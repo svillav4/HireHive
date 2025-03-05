@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "accounts",
+    "payments",
+    "services",
 ]
 
 MIDDLEWARE = [
@@ -98,6 +101,9 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+AUTH_USER_MODEL = 'accounts.User' #This line is added to the settings.py file to specify the custom user model.
+
 
 
 # Internationalization
