@@ -19,7 +19,7 @@ class Client(models.Model):
 class Freelancer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.FloatField(default=0)
-    portfolio = models.CharField(max_length=100)
+    portfolio = models.CharField(max_length=100, null=True, blank=True)
     experience = models.TextField()
     
     def __str__(self):
