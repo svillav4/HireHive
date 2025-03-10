@@ -9,7 +9,7 @@ class Interest(models.Model):
     def __str__(self):
         return self.name
     
-class clientInterests(models.Model):
+class ClientInterest(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     
@@ -21,6 +21,7 @@ class Service(models.Model):
     description = models.TextField()
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images', blank=True, default='default-service.jpg')
     price = models.IntegerField()
     rating = models.FloatField(default=0)
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
@@ -33,7 +34,7 @@ class Review(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
-    comment = models.TextField()
+    comment = models.CharField(max_length=250)
     creation_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
