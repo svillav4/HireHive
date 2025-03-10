@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    {% block styles %}
+    {% endblock styles %}
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="navbar_container">
+            <div class="logo_container">
+                <img src="static/images/logo/LogoConFondo.svg" alt="" width="80px" height="80px">
+                <h2>HireHive</h4>
+            </div>
+            <div class="nav_links_container">
+                <ul class="nav_links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+    {% endblock content%}
+</body>
+</html>
