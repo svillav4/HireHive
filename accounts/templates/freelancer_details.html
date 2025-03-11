@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/freelancer_details.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<form action="{% url 'freelancer_details' %}" method="POST">
+    {% csrf_token %}
+    <div class="container_details">
+        <h2>Freelancer Details</h2>
+        <div class="input_box">
+            <div class="input_field">
+                <label for="experience">Experience</label>
+                <textarea type="text" name="experience" id="experience" class="input experience">{{ experience }}</textarea>
+            </div>
+            <div class="input_field">
+                <label for="portfolio">Portfolio Link</label>
+                <input type="text" name="portfolio" id="portfolio" class="input" value="{{ portfolio }}">
+            </div>
+        </div>
+            <button type="submit" id="save_button" class="button_1">Save</button>
+    </div>
+</form>
+<dialog class="modal_successful_save" id="modal_success">
+    <div class="modal_content">
+        <p>Details saved successfully!</p>
+        <button id="close_button" class="button_1">Close</button>
+    </div>
+</dialog>
+<script src="{% static 'scripts/freelancer_details.js' %}"></script>
+{% endblock content %}

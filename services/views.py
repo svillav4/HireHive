@@ -27,11 +27,11 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
 
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         form = ServiceForm()
         return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = ServiceForm(request.POST, request.FILES)
         if form.is_valid():
             freelancer = request.user.freelancer

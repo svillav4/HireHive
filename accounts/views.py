@@ -25,11 +25,11 @@ class SignupView(View):
             user = form.save()
             if user.is_freelancer:
                 Freelancer.objects.create(user=user)
-                """ If the user is a freelancer, redirect them to the freelancer_signup page. THIS IS NOT IMPLEMENTED YET. """
-                return redirect('freelancer_signup')
+                login(request, user)
+                return redirect('freelancer_details')
             else:
                 Client.objects.create(user=user)
-            login(request, form.instance)
+            login(request, user)
             return redirect('home')
         context = {
             'form': form
@@ -65,3 +65,36 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect('home')
+    
+class FreelancerDetailsView(View):
+    template_name = 'freelancer_details.html'
+
+    def get(self, request):
+        user = request.user
+
+        if not user.is_freelancer:
+            return redirect('home')
+        
+        experience = user.freelancer.experience
+        portfolio = user.freelancer.portfolio if user.freelancer.portfolio else ''
+
+        context = {
+            'experience': experience,
+            'portfolio': portfolio
+        }
+        
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        user = request.user
+        experience = request.POST.get('experience')
+        portfolio = request.POST.get('portfolio')
+
+        Freelancer.objects.filter(user=user).update(experience=experience, portfolio=portfolio)
+
+        context = {
+            'experience': experience,
+            'portfolio': portfolio
+        }
+
+        return render(request, self.template_name, context)
