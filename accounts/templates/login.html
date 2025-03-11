@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    {% endblock styles %}
+    <title>Login</title>
+</head>
+<body>
+{% block content %}
+    <div class="main">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="container_login">
+                <h2>Login</h2>
+                <div class="input_box">
+                    <div class="input_field">
+                        <input type="text" name="username" id="username" class="input" required>
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input_field">
+                        <input type="password" name="password" id="password" class="input" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!-- Show authentication form errors in bootstrap danger class -->
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <button type="submit" class="button_login">Login</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+</body>
+</html>

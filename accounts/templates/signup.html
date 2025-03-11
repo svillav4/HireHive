@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/signup.css' %}">
+    {% endblock styles %}
+    <title>SignUp</title>
+</head>
+<body>
+{% block content %}
+<div class="main">
+    <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <div class="container_signup">
+            <h1>SignUp</h1>
+            <div class="selector">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark" for="btnradio1">Client</label>
+                
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="toggleIsFreelancer()">
+                    <label class="btn btn-outline-dark" for="btnradio2" style=" border-radius: 0px 5px 5px 0px;">Freelancer</label>
+                    <input type="hidden" id="is_freelancer" name="is_freelancer" value="{{ form.is_freelancer.value }}">
+                </div>
+            </div>
+            <div class="input_box">
+                <div class="input_field">
+                    <input class="input" type="text" name="username" id="username" required value="{{ form.username.value|default_if_none:'' }}">
+                    <label for="username">Username</label>
+                </div>
+                <div class="input_field">
+                    <input class="input" type="email" name="email" id="email" value="{{ form.email.value|default_if_none:'' }}" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input_field">
+                    <input class="input" type="password" name="password1" id="password1" required>
+                    <label for="password1">Password</label>
+                </div>
+                <div class="input_field">
+                    <input class="input" type="password" name="password2" id="password2" required>
+                    <label for="password2">Confirm Password</label>
+                </div>
+                <div class="input_field">
+                    <input class="input" type="text" name="first_name" id="first_name" value="{{ form.first_name.value|default_if_none:'' }}" required>
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input_field">
+                    <input class="input" type="text" name="last_name" id="last_name" value="{{ form.last_name.value|default_if_none:'' }}" required>
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <strong>{{ field.label }}:</strong> {{ error }} <br>
+                    {% endfor %}
+                {% endfor %}
+                </div>
+            {% endif %}
+            <button class="button_signup" type="submit">SignUp</button>
+        </div>
+    </form>
+</div>
+<script src="{% static 'scripts/signup.js' %}"></script>
+{% endblock content %}
+</body>
+</html>
