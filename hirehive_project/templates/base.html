@@ -22,7 +22,7 @@
                     {% if user.is_authenticated %}
                         <li><a href="#">Orders</a></li>
                         {% if user.is_freelancer %}
-                            <li><a href="#">My Services</a></li>
+                            <li><a href="{% url 'my_services' %}">My Services</a></li>
                         {% endif %}
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
