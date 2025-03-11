@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"crossorigin="anonymous" />
     {% block styles %}
     {% endblock styles %}
     <title>Document</title>
@@ -18,11 +19,16 @@
             </div>
             <div class="nav_links_container">
                 <ul class="nav_links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Create Service</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="#">Orders</a></li>
+                        {% if user.is_freelancer %}
+                            <li><a href="#">My Services</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'signup' %}">SignUp</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
