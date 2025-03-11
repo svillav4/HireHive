@@ -1,21 +1,22 @@
-.main {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    height: 100vh;
-}
-
 .container_login {
-    align-items: center;
+    width: 25%;
+    margin: 10% auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     background-color: #fff;
 }
 
+.container_login h2 {
+    margin: 30px;
+    font-weight: 700;
+}
+
 .input_box {
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
 }
 
@@ -61,13 +62,6 @@
     border-bottom: 1px solid #1b263b;
 }
 
-.button_login {
-    background-color: #FFD058;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    margin: 20px;
+.alert{
+    margin: 0%;
 }

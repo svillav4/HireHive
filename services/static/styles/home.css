@@ -39,6 +39,9 @@
 
 .search_box button{
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     right: 10px;
     top: 30px;
     width: 40px;
