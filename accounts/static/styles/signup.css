@@ -65,13 +65,3 @@
 .input_field .input:valid {
     border-bottom: 1px solid #1b263b;
 }
-
-.button_signup {
-    background-color: #FFD058;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    padding: 10px 40px;
-    border-radius: 12px;
-    margin: 20px;
-}

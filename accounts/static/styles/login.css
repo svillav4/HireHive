@@ -65,13 +65,3 @@
 .alert{
     margin: 0%;
 }
-
-.button_login {
-    background-color: #FFD058;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    padding: 10px 40px;
-    border-radius: 12px;
-    margin: 20px;
-}

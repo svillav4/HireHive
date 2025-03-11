@@ -69,3 +69,13 @@ body{
 .nav_links a:hover{
     color: #ffd058;
 }
+
+.button_1{
+    background-color: #FFD058;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 12px;
+    margin: 20px;
+}
