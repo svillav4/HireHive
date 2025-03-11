@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %} Success {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="alert alert-success">
+            <h3>Service created successfully</h3>
+            <p>Your service has been successfully added.</p>
+            <a href="{% url 'show_services' %}" class="btn btn-success mt-3">My services</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
