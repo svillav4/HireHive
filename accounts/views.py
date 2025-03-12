@@ -53,7 +53,6 @@ class LoginView(View):
             login(request, user)
             return redirect('home')
         else:
-            print("INVALID")
             error = 'Invalid username or password'
         context = {
             'form': form,
