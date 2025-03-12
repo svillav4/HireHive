@@ -1,11 +1,10 @@
 from django.urls import path
-from .views import HomePageView, MyServicesView, CreateServiceView, ServiceSuccessView, ManageServiceView, SearchBarView
+from .views import MyServicesView, CreateServiceView, ServiceSuccessView, ServiceView, SearchBarView
 
 urlpatterns = [
-    path("", HomePageView.as_view(), name="home"),
-    path('services/', MyServicesView.as_view(), name='my_services'),
-    path('services/create', CreateServiceView.as_view(), name='create_service'),
-    path('services/success', ServiceSuccessView.as_view(), name='success'),
-    path('services/manage', ManageServiceView.as_view(), name='manage_service'),
+    path('my_services', MyServicesView.as_view(), name='my_services'),
+    path('create', CreateServiceView.as_view(), name='create_service'),
+    path('success', ServiceSuccessView.as_view(), name='success'),
+    path('<int:id>', ServiceView.as_view(), name='service_view'),
     path('services/search', SearchBarView.as_view(), name='search'),
 ]

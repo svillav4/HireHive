@@ -19,8 +19,14 @@ class SearchBarView(TemplateView):
         return render(request, self.template_name, {"services": services})
 
 
-class MyServicesView(View):
+class MyServicesView(LoginRequiredMixin, View):
     template_name = 'services/my_services.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not hasattr(request.user, 'freelancer'):
+            return redirect('home')
+
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
         services = Service.objects.all()
@@ -32,7 +38,7 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not hasattr(request.user, 'freelancer'):
-            return redirect('services/home')
+            return redirect('home')
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -56,11 +62,9 @@ class ServiceSuccessView(TemplateView):
     template_name = 'services/success.html'
 
 
-class ManageServiceView(LoginRequiredMixin, TemplateView):
-    template_name = 'services/manage_service.html'
+class ServiceView(LoginRequiredMixin, View):
+    template_name = 'services/service_view.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not hasattr(request.user, 'freelancer'):
-            return redirect('services/home')
-
-        return super().dispatch(request, *args, **kwargs)
+    def get(self, request, id):
+        service = Service.objects.get(id=id)
+        return render(request, self.template_name, {'service': service})

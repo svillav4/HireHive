@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+<!-- THIS IS AN EXAMPLE USING BOOTSTRAP, IT IS NOT IMPLEMENTED AS INTENDED YET -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% if service.image and service.image.name != "default-service.jpg" %}{{ service.image.url }}{% else %}{% static 'images/default-service.jpg' %}{% endif %}" class="img-fluid" alt="{{ service.title }}">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ service.title }}</h1>
+            <p>{{ service.description }}</p>
+            <p><strong>{{ service.price }} USD</strong></p>
+            <p>{{ service.rating }}</p>
+            <p>{{ service.delivery_time }} days</p>
+            {% if user.freelancer == service.freelancer %}
+            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
