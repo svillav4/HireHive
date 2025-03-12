@@ -4,10 +4,20 @@ from django.views import View
 from .forms import ServiceForm
 from .models import Service
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 class HomePageView(TemplateView):
     template_name = 'pages/home.html'
+    
+class SearchBarView(TemplateView):
+    template_name = 'pages/home.html'
+    
+    def get(self, request):
+        search = request.GET.get('search', '')
+        services = Service.objects.filter(Q(title__icontains=search) | Q(description__icontains=search)).distinct()
+        return render(request, self.template_name, {"services": services})
+
 
 class MyServicesView(View):
     template_name = 'services/my_services.html'
