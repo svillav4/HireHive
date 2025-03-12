@@ -7,10 +7,10 @@
     <div class="col-md-4">
         <a href="{% url 'create_service' %}" class="text-decoration-none">
             <div class="card text-center border-dashed" style="height: 100%;">
-                <img src="{% static 'images/plus.png' %}" class="card-img-top" alt="Agregar servicio" style="height: 200px; object-fit: contain; padding: 20px">
+                <img src="{% static 'images/plus.png' %}" class="card-img-top" alt="Add service" style="height: 200px; object-fit: contain; padding: 20px">
                 <div class="card-body">
-                    <h5 class="card-title text-muted">Agregar servicio</h5>
-                    <p class="text-muted">Haz clic para crear uno nuevo</p>
+                    <h5 class="card-title text-muted">Add service</h5>
+                    <p class="text-muted">Create new service</p>
                 </div>
             </div>
         </a>
@@ -19,14 +19,23 @@
     <!-- Tarjetas de servicios existentes -->
     {% for service in services %}
     <div class="col-md-4">
-        <div class="card">
-            <img src="{% static 'images/default-service.jpg' %}" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title">{{ service.title }}</h5>
-                <p class="card-text">{{ service.description }}</p>
-                <p class="card-text"><strong>{{ service.price }} USD</strong></p>
+        <a href="{% url 'manage_service' %}" class="text-decoration-none">
+            <div class="card">
+                {% if service.image and service.image.name != "default-service.jpg" %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: contain;">
+                {% else %}
+                    <img src="{% static 'images/default-service.jpg' %}" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: contain;">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="text-muted">{{ service.title }}</h5>
+                    <p class="text-muted">{{ service.description }}</p>
+                    <p class="text-muted"><strong>{{ service.price }} USD</strong></p>
+                    <p class="text-muted">{{ service.rating }}</p>
+                    <p class="text-muted">{{ service.delivery_time }} days</p>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
     {% endfor %}
 </div>

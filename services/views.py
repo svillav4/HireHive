@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.views import View
 from .forms import ServiceForm
@@ -13,7 +12,7 @@ class HomePageView(TemplateView):
 class MyServicesView(View):
     template_name = 'services/my_services.html'
 
-    def get(self, request,):
+    def get(self, request):
         services = Service.objects.all()
         return render(request, self.template_name, {"services": services})
 
@@ -23,7 +22,7 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not hasattr(request.user, 'freelancer'):
-            return HttpResponse("No tienes permisos para crear un servicio.", status=403)
+            return redirect('services/home')
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -38,9 +37,20 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
             service = form.save(commit=False)
             service.freelancer = freelancer
             service.save()
-            return redirect('service_success')
+            return redirect('success')
         
         return render(request, self.template_name, {'form': form})
 
+
 class ServiceSuccessView(TemplateView):
-    template_name = 'products/success.html'
+    template_name = 'services/success.html'
+
+
+class ManageServiceView(LoginRequiredMixin, TemplateView):
+    template_name = 'services/manage_service.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not hasattr(request.user, 'freelancer'):
+            return redirect('services/home')
+
+        return super().dispatch(request, *args, **kwargs)
