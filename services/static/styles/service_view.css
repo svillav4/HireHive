@@ -1,0 +1,68 @@
+.go_back {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 10px;
+    top: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    padding: 10px;
+    background-color: #ffd058;
+    color: #131c21;
+    border: none;
+    cursor: pointer;
+    margin: 0%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.go_back:hover {
+    background-color: #e6b84b;
+}
+
+.edit {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 40px;
+    padding: 10px;
+    background-color: #ffd058;
+    color: #131c21;
+    border: none;
+    cursor: pointer;
+    bottom: 20px;
+    left: 50%; 
+    text-decoration: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.edit:hover {
+    background-color: #e6b84b;
+}
+
+.delete {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 40px;
+    padding: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    bottom: 20px;
+    left: 60%; 
+    text-decoration: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.delete:hover {
+    background-color: #c0392b;
+}
