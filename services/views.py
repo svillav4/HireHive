@@ -9,6 +9,10 @@ from django.db.models import Q
 
 class HomePageView(TemplateView):
     template_name = 'pages/home.html'
+
+    def get(self, request):
+        services = Service.objects.all()
+        return render(request, self.template_name, {"services": services})
     
 class SearchBarView(TemplateView):
     template_name = 'pages/home.html'
@@ -16,7 +20,11 @@ class SearchBarView(TemplateView):
     def get(self, request):
         search = request.GET.get('search', '')
         services = Service.objects.filter(Q(title__icontains=search) | Q(description__icontains=search)).distinct()
-        return render(request, self.template_name, {"services": services})
+        context = {
+            'services': services,
+            'search': search
+        }
+        return render(request, self.template_name, context)
 
 
 class MyServicesView(LoginRequiredMixin, View):

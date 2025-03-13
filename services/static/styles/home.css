@@ -148,3 +148,11 @@
     flex-direction: column;
 }
 
+.service_info_bottom a{
+    color: #131c21;
+    text-decoration: none;
+}
+
+.service_info_bottom a:hover{
+    text-decoration: underline;
+}
