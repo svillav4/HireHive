@@ -18,6 +18,7 @@
     border-radius: 50px;
     color: white;
     font-size: larger;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .search_box{
@@ -93,6 +94,7 @@
     height: 100%;
     border-radius: 30px;
     object-fit: cover;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .service_info{
@@ -155,4 +157,34 @@
 
 .service_info_bottom a:hover{
     text-decoration: underline;
+}
+
+.featured_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.filter-dropdown {
+    position: relative;
+    display: inline-block;
+    padding-right: 200px;
+}
+
+.filter-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    width: 250px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.filter-dropdown.active .filter-menu {
+    display: block;
 }
