@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views import View
 from .forms import ServiceForm
@@ -11,18 +11,29 @@ class HomePageView(TemplateView):
     template_name = 'pages/home.html'
 
     def get(self, request):
-        services = Service.objects.all()
-        return render(request, self.template_name, {"services": services})
-    
-class SearchBarView(TemplateView):
-    template_name = 'pages/home.html'
-    
-    def get(self, request):
-        search = request.GET.get('search', '')
-        services = Service.objects.filter(Q(title__icontains=search) | Q(description__icontains=search)).distinct()
+        search = request.GET.get('search', '').strip()  # Get search query
+
+        # Filter services by search query
+        if search:
+            services = Service.objects.filter(
+                Q(title__icontains=search) | Q(description__icontains=search)
+            ).distinct()
+        else:
+            services = Service.objects.all()
+
+        # Filter services by price range
+        filtered = request.GET.get('filter')
+        if filtered == 'basic':
+            services = services.filter(price__lte=100)
+        elif filtered == 'midrange':
+            services = services.filter(price__gte=100, price__lte=400)
+        elif filtered == 'highend':
+            services = services.filter(price__gte=400)
+
         context = {
             'services': services,
-            'search': search
+            'search': search,
+            'filtered': filtered,
         }
         return render(request, self.template_name, context)
 
@@ -37,7 +48,8 @@ class MyServicesView(LoginRequiredMixin, View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        services = Service.objects.all()
+        freelancer = request.user.freelancer
+        services = Service.objects.filter(freelancer=freelancer)
         return render(request, self.template_name, {"services": services})
 
 
@@ -74,5 +86,5 @@ class ServiceView(LoginRequiredMixin, View):
     template_name = 'services/service_view.html'
 
     def get(self, request, id):
-        service = Service.objects.get(id=id)
+        service = get_object_or_404(Service, id=id)
         return render(request, self.template_name, {'service': service})
