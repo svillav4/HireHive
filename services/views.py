@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 
 
-class HomePageView(TemplateView):
+class HomePageView(View):
     template_name = 'pages/home.html'
 
     def get(self, request):
@@ -53,7 +53,7 @@ class MyServicesView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"services": services})
 
 
-class CreateServiceView(LoginRequiredMixin, TemplateView):
+class CreateServiceView(LoginRequiredMixin, View):
     template_name = 'services/create_service.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -78,11 +78,11 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
 
-class ServiceSuccessView(TemplateView):
+class ServiceSuccessView(View):
     template_name = 'services/success.html'
 
 
-class ServiceView(LoginRequiredMixin, View):
+class ServiceView(LoginRequiredMixin, TemplateView):
     template_name = 'services/service_view.html'
 
     def get(self, request, id):

@@ -3,23 +3,16 @@ from accounts.models import Client, Freelancer
 
 # Create your models here.
 
-class Interest(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=100)
     
     def __str__(self):
         return self.name
-    
-class ClientInterest(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.interest
 
 class Service(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images', blank=True, default='default-service.jpg')
     price = models.IntegerField()
@@ -38,3 +31,5 @@ class Review(models.Model):
     
     def __str__(self):
         return self.comment
+    
+    
