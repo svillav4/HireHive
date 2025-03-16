@@ -24,11 +24,11 @@
     </div>
     <div>
         <div class="featured_header">
-            <h1 style="width: 90%; margin: 25px auto; font-weight: 700; padding-left: 85px;">Featured</h1>
-            <div class="filter-dropdown">
+            <h1>Featured</h1>
+            <div class="filter_dropdown">
                 <button class="btn btn-outline-dark dropdown-toggle" onclick="toggleFilter()">Filters</button>
                 <form method="GET" action="{% url 'home' %}">
-                    <div class="filter-menu">
+                    <div class="filter_menu">
                         <p class="fw-bold text-muted">Select Filter</p>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="filter" value="basic" 
@@ -69,7 +69,11 @@
                 <div class="service_info">
                     <div class="service_info_top">
                         <div class="service_info_profile">
-                            <img src="{% static 'images/default-avatar.jpg' %}" alt="">
+                            {% if user.image and user.image.name != "default-avatar.jpg" %}
+                                <img src="{{ user.image.url }}" alt="{{ user.name }}" >
+                            {% else %}
+                                <img src="{% static 'images/default-avatar.jpg' %}" alt="{{ user.name }}">
+                            {% endif %}
                             <b> {{ service.freelancer }} </b>
                         </div>
                         <div class="service_info_rating">

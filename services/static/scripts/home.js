@@ -1,5 +1,5 @@
 function toggleFilter() {
-    document.querySelector(".filter-dropdown").classList.toggle("active");
+    document.querySelector(".filter_dropdown").classList.toggle("active");
 }
 
 function clearFilters() {
@@ -15,8 +15,8 @@ function clearFilters() {
 
 // Close dropdown when clicking outside
 document.addEventListener("click", function(event) {
-    const dropdown = document.querySelector(".filter-dropdown");
+    const dropdown = document.querySelector(".filter_dropdown");
     if (!dropdown.contains(event.target)) {
-        dropdown.classList.remove("active");
+        dropdown.classList.remove("active");    
     }
 });
