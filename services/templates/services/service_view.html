@@ -6,31 +6,52 @@
 {% endblock styles %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="card text-center border-dashed" style="height: 100%; position: relative;">
-            <a href="{% url 'my_services' %}" class="go_back">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-back-up">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M9 14l-4 -4l4 -4" />
-                    <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+<div class="container service_container">
+    <a href="{% url 'my_services' %}" class="go_back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M9 14l-4 -4l4 -4" />
+            <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+        </svg> Volver
+    </a>
+
+    <div class="service_card">
+        <div class="service_image">
+            <img src="{% if service.image and service.image.name != 'default-service.jpg' %}{{ service.image.url }}{% else %}{% static 'images/default-service.jpg' %}{% endif %}" alt="{{ service.title }}">
+        </div>
+        <div class="service_info">
+            <h2>{{ service.title }}</h2>
+            <h5 class="freelancer_name">{{ service.freelancer }}</h5>
+            <p class="description">{{ service.description }}</p>
+            <p class="price"><strong>{{ service.price }} USD</strong></p>
+            <div class="service_info_rating">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
                 </svg>
-            </a>
-            <h2 class="text-muted">{{ service.title }}</h2>
-            <h5 class="text-muted">{{ service.freelancer }}</h5>
-            <div class="col-md-6">
-                <img src="{% if service.image and service.image.name != "default-service.jpg" %}{{ service.image.url }}{% else %}{% static 'images/default-service.jpg' %}{% endif %}" class="img-fluid" alt="{{ service.title }}">
+                <div>
+                    <p> {{ service.rating }} </p>
+                </div>
             </div>
-            <div class="col-md-6">
-                <p class="text-muted">{{ service.description }}</p>
-                <p class="text-muted"><strong>{{ service.price }} USD</strong></p>
-                <p class="text-muted">{{ service.rating }}</p>
-                <p class="text-muted">{{ service.delivery_time }} days</p>
-                {% if user.freelancer == service.freelancer %}
-                <a href="#" class="edit">Edit</a>
-                <a href="#" class="delete">Delete</a>
-                {% endif %}
+            <div class="service_info_rating">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail-fast">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7h3" /><path d="M3 11h2" /><path d="M9.02 8.801l-.6 6a2 2 0 0 0 1.99 2.199h7.98a2 2 0 0 0 1.99 -1.801l.6 -6a2 2 0 0 0 -1.99 -2.199h-7.98a2 2 0 0 0 -1.99 1.801z" /><path d="M9.8 7.5l2.982 3.28a3 3 0 0 0 4.238 .202l3.28 -2.982" />
+                </svg>
+                <div>
+                    <p> {{ service.delivery_time }} días</p>
+                </div>
             </div>
+            
+            
+            {% if user.freelancer == service.freelancer %}
+            <div class="service_actions">
+                <a href="#" class="edit">Editar</a>
+                <a href="#" class="delete">Eliminar</a>
+                <a href="#" class="orders">See Orders</a>
+            </div>
+            {% endif %}
         </div>
     </div>
+</div>
+
+<script src="{% static 'scripts/service_view.js' %}"></script>
 {% endblock %}
