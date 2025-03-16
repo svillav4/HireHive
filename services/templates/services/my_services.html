@@ -1,43 +1,67 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/my_services.css' %}">
+{% endblock styles %}
+
 {% block content %}
-<div class="row g-3">
-    <!-- Tarjeta para crear un nuevo servicio -->
-    <div class="col-md-4">
-        <a href="{% url 'create_service' %}" class="text-decoration-none">
-            <div class="card text-center border-dashed" style="height: 100%;">
-                <img src="{% static 'images/plus.png' %}" class="card-img-top" alt="Add service" style="height: 200px; object-fit: contain; padding: 20px">
-                <div class="card-body">
-                    <h5 class="card-title text-muted">Add service</h5>
-                    <p class="text-muted">Create new service</p>
+<div>
+    <div class="featured_header">
+        <h1>My Services</h1>
+    </div>
+    <div class="all_services_container">
+        <div class="service_container">
+            <a href="{% url 'create_service' %}" class="text-decoration-none">  
+                <div class="new_service_card">
+                    <img src="{% static 'images/plus.svg' %}" alt="Create">
+                </div>
+            </a>
+            <div class="new_service_info">
+                <b>Add service</b>
+                <p>Create new service</p>
+            </div>
+        </div>
+
+        {% for service in services %}
+        <div class="service_container" onclick="">
+            <div class="service_image">
+                <a href="{% url 'service_view' service.id %}">
+                    {% if service.image and service.image.name != "default-service.jpg" %}
+                        <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                    {% else %}
+                        <img src="{% static 'images/default-service.jpg' %}" alt="{{ service.title }}">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="service_info">
+                <div class="service_info_top">
+                    <div class="service_info_profile">
+                        {% if user.image and user.image.name != "default-avatar.jpg" %}
+                            <img src="{{ user.image.url }}" alt="{{ user.name }}" >
+                        {% else %}
+                            <img src="{% static 'images/default-avatar.jpg' %}" alt="{{ user.name }}">
+                        {% endif %}
+                        <b> {{ service.freelancer }} </b>
+                    </div>
+                    <div class="service_info_rating">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                        </svg>
+                        <div>
+                            <p> {{ service.rating }} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service_info_bottom" >
+                    <a href="{% url 'service_view' service.id %}">
+                        <p style="margin-bottom: 10px ;"> {{ service.title }} </p>
+                    </a>
+                    <b>Price: ${{ service.price }} </b>
                 </div>
             </div>
-        </a>
+        </div>
+        {% endfor %}
     </div>
-
-    <!-- Tarjetas de servicios existentes -->
-    {% for service in services %}
-    <div class="col-md-4">
-        <a href="{% url 'service_view' service.id %}" class="text-decoration-none">
-            <div class="card">
-                {% if service.image and service.image.name != "default-service.jpg" %}
-                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: contain;">
-                {% else %}
-                    <img src="{% static 'images/default-service.jpg' %}" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: contain;">
-                {% endif %}
-
-                <div class="card-body">
-                    <h2 class="text-muted">{{ service.title }}</h2>
-                    <h5 class="text-muted">{{ service.freelancer }}</h5>
-                    <p class="text-muted">{{ service.description }}</p>
-                    <p class="text-muted"><strong>{{ service.price }} USD</strong></p>
-                    <p class="text-muted">{{ service.rating }}</p>
-                    <p class="text-muted">{{ service.delivery_time }} days</p>
-                </div>
-            </div>
-        </a>
-    </div>
-    {% endfor %}
 </div>
 {% endblock %}

@@ -1,0 +1,196 @@
+.container_create_service {
+    width: 70%;
+    margin: 80px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 40px;
+    position: relative;
+}
+
+.container_create_service h1 {
+    color: #000;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.input_box {
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.input_field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.input_field label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.input {
+    height: 45px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    color: #000;
+    padding: 5px;
+}
+
+.input_box .input_field label {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    pointer-events: none;
+    transition: .2s;
+    font-size: 14px;
+    color: #666;
+}
+
+.input_field textarea {
+    height: 120px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    color: #000;
+    padding: 10px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.file_upload_field {
+    position: relative;
+}
+
+.file_input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* custom upload based on uiverse style by Yaya12085 */
+.custom_file_upload {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #cacaca;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.custom_file_upload:hover {
+    background-color: #e9f3ff;
+    border-color: #0056b3;
+}
+
+.custom_file_upload .icon svg {
+    height: 80px;
+    fill: rgba(75, 85, 99, 1);
+}
+
+.custom_file_upload .text span {
+    font-weight: 400;
+    color: rgba(75, 85, 99, 1);
+}
+
+.file_upload_field label {
+    position: static !important;
+    pointer-events: auto !important;
+}
+
+.input_field input:focus~label,
+.input_field input:valid~label,
+.input_field textarea:focus ~ label,
+.input_field textarea:valid ~ label,
+.input_field select:focus ~ label,
+.input_field select:valid ~ label {
+    top: -5px;
+    font-size: 12px;
+    color: #1b263b;
+}
+
+.input_field input[type="file"]:focus~label,
+.input_field input[type="file"]:valid~label {
+    top: auto;
+    font-size: inherit;
+    color: inherit;
+}
+
+.input_field input:focus,
+.input_field textarea:focus,
+.input_field select:focus {
+    border-bottom: 1px solid #1b263b;
+}
+
+select {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background: transparent;
+    outline: none;
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    height: 45px;
+    background: #e6b84b;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 30px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #d9a93a;
+}
+
+.alert {
+    width: 80%;
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.custom_file_upload.file-selected {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.custom_file_upload.file-selected .icon svg {
+    fill: #4CAF50;
+}
