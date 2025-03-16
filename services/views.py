@@ -78,7 +78,7 @@ class CreateServiceView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
 
 
-class ServiceSuccessView(View):
+class ServiceSuccessView(TemplateView):
     template_name = 'services/success.html'
 
 
