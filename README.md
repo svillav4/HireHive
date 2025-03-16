@@ -28,7 +28,7 @@ To keep a copy of our project, you can follow the next steps:
   ```
   * Up to this point, your folder should look like this:
   ```bash
-    JobJourney
+    HireHive
     ├───accounts                    
     ├───hirehive_project
     ├───media
