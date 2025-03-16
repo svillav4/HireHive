@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import SignupForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, logout
 from .models import Client, Freelancer
 from django.contrib.auth.forms import AuthenticationForm
 
 
-
-# Create your views here.
 class SignupView(View):
     template_name = 'signup.html'
 
@@ -48,6 +47,7 @@ class LoginView(View):
     
     def post(self, request):
         form = AuthenticationForm(data=request.POST)
+        error = None
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -65,17 +65,19 @@ class LogoutView(View):
         logout(request)
         return redirect('home')
     
-class FreelancerDetailsView(View):
+class FreelancerDetailsView(LoginRequiredMixin, View):
     template_name = 'freelancer_details.html'
 
-    def get(self, request):
-        user = request.user
-
-        if not user.is_freelancer:
+    def dispatch(self, request, *args, **kwargs):
+        if not hasattr(request.user, 'freelancer'):
             return redirect('home')
         
-        experience = user.freelancer.experience
-        portfolio = user.freelancer.portfolio if user.freelancer.portfolio else ''
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self, request):
+        freelancer = request.user.freelancer     
+        experience = freelancer.experience
+        portfolio = freelancer.portfolio if freelancer.portfolio else ''
 
         context = {
             'experience': experience,

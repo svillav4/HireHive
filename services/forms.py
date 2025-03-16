@@ -5,5 +5,5 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = [
-            'title', 'description', 'image', 'price', 'interest', 'delivery_time' 
+            'title', 'description', 'image', 'price', 'category', 'delivery_time' 
         ] 
