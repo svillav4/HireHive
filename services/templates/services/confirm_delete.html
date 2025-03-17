@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/confirm_delete.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<div class="delete_container">
+    <div class="delete_card">
+        <h2>¿Estás seguro de que quieres eliminar este servicio?</h2>
+        <p>Esta acción no se puede deshacer.</p>
+        
+        <div class="delete_actions">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete_btn">Sí, eliminar</button>
+            </form>
+            <a href="{% url 'service_view' service.pk %}" class="cancel_btn">Cancelar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

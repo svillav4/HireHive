@@ -7,17 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const deliveryTime = document.getElementById("delivery_time");
     const fileInput = document.getElementById("file");
     const fileLabel = document.querySelector(".custom_file_upload");
-    
+
+    // ✅ Mantener la selección de archivo resaltada si ya hay una imagen cargada
+    if (fileInput.files.length > 0) {
+        fileLabel.classList.add("file-selected");
+    }
+
     fileInput.addEventListener("change", function () {
         if (fileInput.files.length > 0) {
-            fileLabel.classList.add("file-selected"); // Agrega la clase cuando se selecciona un archivo
+            fileLabel.classList.add("file-selected");
         } else {
-            fileLabel.classList.remove("file-selected"); // La elimina si no hay archivo
+            fileLabel.classList.remove("file-selected");
         }
     });
 
     const errorContainer = document.createElement("div");
-
     errorContainer.classList.add("alert", "alert-danger");
     errorContainer.style.display = "none";
     form.insertBefore(errorContainer, form.firstChild);

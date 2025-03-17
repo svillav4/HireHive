@@ -44,9 +44,9 @@
             
             {% if user.freelancer == service.freelancer %}
             <div class="service_actions">
-                <a href="#" class="edit">Editar</a>
-                <a href="#" class="delete">Eliminar</a>
-                <a href="{% url 'job_application' service.id %}" class="orders">See Orders</a>
+                <a href="{% url 'edit_service' service.pk %}" class="edit">Edit</a>
+                <a href="{% url 'delete_service' service.pk %}" class="delete">Delete</a>
+                <a href="{% url 'job_application' service.pk %}" class="orders">See Orders</a>
             </div>
             {% endif %}
         </div>

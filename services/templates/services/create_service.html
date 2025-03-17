@@ -61,11 +61,11 @@
     </div>
     {% if form.errors %}
     <div class="alert alert-danger" role="alert">
-      {% for field in form %}
-      {% for error in field.errors %}
-      <strong>{{ field.label }}:</strong> {{ error }} <br>
-      {% endfor %}
-      {% endfor %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <strong>{{ field.label }}:</strong> {{ error }} <br>
+            {% endfor %}
+        {% endfor %}
     </div>
     {% endif %}
     <button class="button_1" type="submit">Create Service</button>

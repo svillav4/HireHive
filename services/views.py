@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, UpdateView, DeleteView
 from django.views import View
 from .forms import ServiceForm
 from .models import Service
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-
+from django.urls import reverse_lazy
 
 class HomePageView(View):
     template_name = 'pages/home.html'
@@ -69,13 +69,13 @@ class CreateServiceView(LoginRequiredMixin, View):
     def post(self, request):
         form = ServiceForm(request.POST, request.FILES)
         if form.is_valid():
-            freelancer = request.user.freelancer
             service = form.save(commit=False)
-            service.freelancer = freelancer
+            service.freelancer = request.user.freelancer
             service.save()
             return redirect('success')
         
-        return render(request, self.template_name, {'form': form})
+        context = {'form': form}
+        return render(request, self.template_name, context)
 
 
 class ServiceSuccessView(TemplateView):
@@ -85,6 +85,21 @@ class ServiceSuccessView(TemplateView):
 class ServiceView(LoginRequiredMixin, TemplateView):
     template_name = 'services/service_view.html'
 
-    def get(self, request, id):
-        service = get_object_or_404(Service, id=id)
-        return render(request, self.template_name, {'service': service})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        service = get_object_or_404(Service, pk=self.kwargs['pk'])
+        context['service'] = service
+        return context
+
+class EditServiceView(UpdateView):
+    model = Service
+    form_class = ServiceForm
+    template_name = 'services/edit_service.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('service_view', kwargs={'pk': self.object.pk})
+
+class DeleteServiceView(DeleteView):
+    model = Service
+    template_name = 'services/confirm_delete.html'
+    success_url = reverse_lazy('my_services')
