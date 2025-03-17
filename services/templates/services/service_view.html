@@ -46,7 +46,7 @@
             <div class="service_actions">
                 <a href="#" class="edit">Editar</a>
                 <a href="#" class="delete">Eliminar</a>
-                <a href="#" class="orders">See Orders</a>
+                <a href="{% url 'job_application' service.id %}" class="orders">See Orders</a>
             </div>
             {% endif %}
         </div>
