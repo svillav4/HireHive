@@ -1,0 +1,84 @@
+#order_title{
+    width: 90%;
+    margin: 40px auto;
+    font-weight: 700;
+}
+
+.container_orders{
+    width: 90%;
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.order{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.left_order{
+    display: flex;
+    flex-direction: column;
+}
+
+.order h3{
+    margin-bottom: 20px;
+}
+
+.client_profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.client_profile img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.client_profile p{
+    margin: 0%;
+}
+
+.right_order{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status_order{
+    padding: 10px;
+    border-radius: 10px;  
+    margin: auto;
+    font-weight: 600;
+}
+
+.text_completed{
+    color: green;
+    background-color: rgba(0, 128, 0, 0.281);
+}
+
+.text_cancelled{
+    color: rgb(179, 3, 3);
+    background-color: rgba(255, 0, 0, 0.384);
+}
+
+.text_pending_approval{
+    color: #854D0E;
+    background-color: #FEF08A;
+}
+
+.text_in_progress{
+    color: #1E40AF;
+    background-color: #BFDBFE;
+}

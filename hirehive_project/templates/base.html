@@ -26,7 +26,9 @@
                         <li><a href="#">Orders</a></li>
                         {% if user.is_freelancer %}
                             <li><a href="{% url 'my_services' %}">My Services</a></li>
-                        {% endif %}
+                        {% else %}
+                            <li><a href="{% url 'my_hires' %}">My Hires</a></li>
+                        {% endif %}               
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">Login</a></li>
