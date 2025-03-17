@@ -162,7 +162,7 @@ select {
 }
 
 button {
-    width: 100%;
+    display: inline-block;
     height: 45px;
     background: #e6b84b;
     border: none;
@@ -180,15 +180,10 @@ button:hover {
 }
 
 .alert {
-    margin: 10px 0;
     width: 80%;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    text-align: left;
+    color: red;
     font-size: 14px;
+    margin-top: 10px;
 }
 
 .custom_file_upload.file-selected {
@@ -200,3 +195,17 @@ button:hover {
     fill: #4CAF50;
 }
 
+.cancel_btn {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.cancel_btn:hover {
+    background-color: #c82333;
+}
