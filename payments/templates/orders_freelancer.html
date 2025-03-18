@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/orders_freelancer.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<div class="all_container">
+    <div class="container_orders_pending">
+        <h2 id="order_title">Pending Approval</h2>
+        <div class="container_orders">
+            {% if orders_pending_approval %}
+                {% for order_pending_approval in orders_pending_approval %}
+                    <div class="order">
+                        <div class="left_order">
+                            <h3> {{ order_pending_approval.service.title }} </h3>
+                            <div class="client_profile">
+                                {% if order_pending_approval.client.user.image.name == 'default-avatar.jpg' %}
+                                    <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
+                                {% else %}
+                                    <img src="{{ order_pending_approval.client.user.image.url }}" alt="Profile Picture">
+                                {% endif %}
+                                <p>{{ order_pending_approval.client.user.username }}</p>
+                            </div>
+                        </div>
+                        <div class="right_order">
+                            <h4>Do you want to accept this job?</h4>
+                            <div class="job_application_buttons">
+                                <button class="btn btn-success">Accept</button>
+                                <button class="btn btn-danger">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no_orders">You don't have any orders yet</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container_orders_pending">
+        <h2 id="order_title">Waiting for Payment</h2>
+        <div class="container_orders">
+            {% if orders_pending_payment %}
+                {% for order_pending_payment in orders_pending_payment %}
+                    <div class="order">
+                        <div class="left_order">
+                            <h3> {{ order_pending_payment.service.title }} </h3>
+                            <div class="client_profile">
+                                {% if order_pending_payment.client.user.image.name == 'default-avatar.jpg' %}
+                                    <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
+                                {% else %}
+                                    <img src="{{ order_pending_payment.client.user.image.url }}" alt="Profile Picture">
+                                {% endif %}
+                                <p>{{ order_pending_payment.client.user.username }}</p>
+                            </div>
+                        </div>
+                        <p class="{{order_pending_payment.status_color}} status_order" >{{order_pending_payment.status}}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no_orders">You don't have any orders yet</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

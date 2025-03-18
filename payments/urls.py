@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import JobApplicationView, MyHiresView
+from .views import SeviceOrdersView, OrdersClientView, OrdersFreelancerView
 
 urlpatterns = [
-    path('job_application/<int:service_id>/', JobApplicationView.as_view(), name='job_application'),
-    path('my_hires/', MyHiresView.as_view(), name='my_hires'),
+    path('ServiceOrders/<int:service_id>/', SeviceOrdersView.as_view(), name='service_orders'),
+    path('OrdersClient/', OrdersClientView.as_view(), name='orders_client'),
+    path('OrdersFreelancer/', OrdersFreelancerView.as_view(), name='orders_freelancer'),   
 ]

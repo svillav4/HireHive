@@ -23,11 +23,11 @@
             <div class="nav_links_container">
                 <ul class="nav_links">
                     {% if user.is_authenticated %}
-                        <li><a href="#">Orders</a></li>
                         {% if user.is_freelancer %}
+                            <li><a href="{% url 'orders_freelancer' %}">Orders</a></li>
                             <li><a href="{% url 'my_services' %}">My Services</a></li>
                         {% else %}
-                            <li><a href="{% url 'my_hires' %}">My Hires</a></li>
+                            <li><a href="{% url 'orders_client' %}">Orders</a></li>
                         {% endif %}               
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}

@@ -1,4 +1,4 @@
-#job_application_title{
+#order_title{
     width: 90%;
     margin: 40px auto;
     font-weight: 700;
@@ -15,7 +15,12 @@
     border-radius: 30px;
 }
 
-.job_application{
+.no_orders{
+    margin: 0%;
+    font-weight: 700;
+}
+
+.order{
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -24,12 +29,12 @@
     border-bottom: 1px solid #e0e0e0;
 }
 
-.left_job_application{
+.left_order{
     display: flex;
     flex-direction: column;
 }
 
-.job_application h3{
+.order h3{
     margin-bottom: 20px;
 }
 
@@ -50,13 +55,13 @@
     margin: 0%;
 }
 
-.right_job_application{
+.right_order{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.status_job_application{
+.status_order{
     padding: 10px;
     border-radius: 10px;  
     margin: auto;
@@ -71,6 +76,11 @@
 .text_cancelled{
     color: rgb(179, 3, 3);
     background-color: rgba(255, 0, 0, 0.384);
+}
+
+.text_pending_approval{
+    color: #854D0E;
+    background-color: #FEF08A;
 }
 
 .text_in_progress{
