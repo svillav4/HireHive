@@ -11,28 +11,23 @@
         <h1>My Services</h1>
     </div>
     <div class="all_services_container">
-        <div class="service_container">
-            <a href="{% url 'create_service' %}" class="text-decoration-none">  
-                <div class="new_service_card">
-                    <img src="{% static 'images/plus.svg' %}" alt="Create">
-                </div>
-            </a>
+        <div class="service_container" onclick="enterService()" data-url="{% url 'create_service' %}">
+            <div class="new_service_card">
+                <img src="{% static 'images/plus.svg' %}" alt="Create">
+            </div>
             <div class="new_service_info">
                 <b>Add service</b>
                 <p>Create new service</p>
             </div>
         </div>
-
         {% for service in services %}
-        <div class="service_container" onclick="">
+        <div class="service_container" onclick="enterService()" data-url="{% url 'service_view' service.id %}">
             <div class="service_image">
-                <a href="{% url 'service_view' service.id %}">
-                    {% if service.image and service.image.name != "default-service.jpg" %}
-                        <img src="{{ service.image.url }}" alt="{{ service.title }}">
-                    {% else %}
-                        <img src="{% static 'images/default-service.jpg' %}" alt="{{ service.title }}">
-                    {% endif %}
-                </a>
+                {% if service.image and service.image.name != "default-service.jpg" %}
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                {% else %}
+                    <img src="{% static 'images/default-service.jpg' %}" alt="{{ service.title }}">
+                {% endif %}
             </div>
             <div class="service_info">
                 <div class="service_info_top">
@@ -64,4 +59,7 @@
         {% endfor %}
     </div>
 </div>
+<script src="{% static 'scripts/my_services.js' %}"></script>
 {% endblock %}
+
+

@@ -9,6 +9,7 @@ class Order(models.Model):
         COMPLETED = 'Completed', 'Completed'
         CANCELLED = 'Cancelled', 'Cancelled'
         PENDING_APPROVAL = 'Pending Approval', 'Pending Approval'
+        PENDING_PAYMENT = 'Pending Payment', 'Pending Payment'
         IN_PROGRESS = 'In Progress', 'In Progress'
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
