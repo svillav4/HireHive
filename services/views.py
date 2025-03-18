@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, UpdateView, DeleteView
 from django.views import View
 from .forms import ServiceForm
-from .models import Service
+from .models import Service, Review
+from payments.models import Order
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -88,8 +89,22 @@ class ServiceView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         service = get_object_or_404(Service, pk=self.kwargs['pk'])
+
+        orders_in_queue = Order.objects.filter(
+            service=service,
+            status__in=[
+                Order.Status.PENDING_PAYMENT,
+                Order.Status.IN_PROGRESS
+            ]
+        ).count()
+
+        reviews = Review.objects.filter(service=service).order_by('-creation_date')[:5]
+
         context['service'] = service
+        context['orders_in_queue'] = orders_in_queue
+        context['reviews'] = reviews
         return context
+    
 
 class EditServiceView(UpdateView):
     model = Service
@@ -98,6 +113,7 @@ class EditServiceView(UpdateView):
     
     def get_success_url(self):
         return reverse_lazy('service_view', kwargs={'pk': self.object.pk})
+
 
 class DeleteServiceView(DeleteView):
     model = Service
