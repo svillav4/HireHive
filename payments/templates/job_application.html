@@ -7,34 +7,30 @@
 
 {% block content %}
 
-    <h2 id="job_application_title">My job applications</h2>
-    <div class="container_jobApplications">
-        {% for jobApplication in jobApplications %}
-            <div class="job_application">
-                <div class="left_job_application">
-                    <h3> {{ jobApplication.service.title }} </h3>
-                    <div class="client_profile">
-                        {% if jobApplication.client.user.image.name == 'default-avatar.jpg' %}
-                            <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
-                        {% else %}
-                            <img src="{{ jobApplication.client.user.image.url }}" alt="Profile Picture">
-                        {% endif %}
-                        <p>{{ jobApplication.client.user.username}}</p>
+    <h2 id="job_application_title">My Service Orders</h2>
+    <div class="container_orders">
+        {% if orders %}
+            {% for order in orders %}
+                <div class="job_application">
+                    <div class="left_job_application">
+                        <h3> {{ order.service.title }} </h3>
+                        <div class="client_profile">
+                            {% if order.client.user.image.name == 'default-avatar.jpg' %}
+                                <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
+                            {% else %}
+                                <img src="{{ order.client.user.image.url }}" alt="Profile Picture">
+                            {% endif %}
+                            <p>{{ order.client.user.username}}</p>
+                        </div>
+                    </div>
+                    <div class="right_job_application">
+                        <p class="{{order.status_color}} status_job_application" >{{order.status}}</p>
                     </div>
                 </div>
-                <div class="right_job_application">
-                    {% if jobApplication.status == 'Pending Approval' %}
-                        <h3>Do you want to accept this job?</h3>
-                        <div class="job_application_buttons">
-                            <button class="btn btn-success">Accept</button>
-                            <button class="btn btn-danger">Decline</button>
-                        </div>
-                    {% else %}
-                        <p class="{{jobApplication.status_color}} status_job_application" >{{jobApplication.status}}</p>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p class="no_job_applications">You don't have any order yet</p>
+        {% endif %}
     </div>
 
 {% endblock content %}
