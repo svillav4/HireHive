@@ -95,7 +95,7 @@ class ServiceSuccessView(TemplateView):
     template_name = 'services/success.html'
 
 
-class ServiceView(LoginRequiredMixin, TemplateView):
+class ServiceView(TemplateView):
     template_name = 'services/service_view.html'
 
     def get_context_data(self, **kwargs):
@@ -111,23 +111,35 @@ class ServiceView(LoginRequiredMixin, TemplateView):
         ).count()
 
         reviews = Review.objects.filter(service=service).order_by('-creation_date')[:5]
+        reviews_count = reviews.count()
 
         context['service'] = service
         context['orders_in_queue'] = orders_in_queue
         context['reviews'] = reviews
+        context['reviews_count'] = reviews_count
         return context
     
 
-class EditServiceView(UpdateView):
+class EditServiceView(LoginRequiredMixin, UpdateView):
     model = Service
     form_class = ServiceForm
     template_name = 'services/edit_service.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user != self.get_object().freelancer.user:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
     
     def get_success_url(self):
         return reverse_lazy('service_view', kwargs={'pk': self.object.pk})
 
 
-class DeleteServiceView(DeleteView):
+class DeleteServiceView(LoginRequiredMixin, DeleteView):
     model = Service
     template_name = 'services/confirm_delete.html'
     success_url = reverse_lazy('my_services')
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user != self.get_object().freelancer.user:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)

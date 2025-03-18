@@ -21,7 +21,7 @@
             </div>
         </div>
         {% for service in services %}
-        <div class="service_container" onclick="enterService()" data-url="{% url 'service_view' service.id %}">
+        <div class="service_container" data-url="{% url 'service_view' service.id %}">
             <div class="service_image">
                 {% if service.image and service.image.name != "default-service.jpg" %}
                     <img src="{{ service.image.url }}" alt="{{ service.title }}">
