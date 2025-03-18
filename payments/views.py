@@ -15,7 +15,7 @@ STATUS_COLORS = {
 }
 
 class SeviceOrdersView(LoginRequiredMixin, View):
-    template_name = 'job_application.html'
+    template_name = 'service_orders.html'
     
     def dispatch(self, request, *args, **kwargs):
         if not hasattr(request.user, 'freelancer'):
