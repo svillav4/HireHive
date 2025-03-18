@@ -5,9 +5,11 @@ function toggleFilter() {
 function clearFilters() {
     document.querySelectorAll(".form-check-input").forEach(input => input.checked = false);
     
+    
     // Remove 'filter' parameter from the URL
     const url = new URL(window.location.href);
-    url.searchParams.delete("filter");
+    url.searchParams.delete("price_filter");
+    url.searchParams.delete("category_filter");
 
     // Reload the page without the filter
     window.location.href = url.toString();

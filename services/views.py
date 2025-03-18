@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, UpdateView, DeleteView
 from django.views import View
 from .forms import ServiceForm
-from .models import Service, Review
+from .models import Service, Review, Category
 from payments.models import Order
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
@@ -13,28 +13,40 @@ class HomePageView(View):
 
     def get(self, request):
         search = request.GET.get('search', '').strip()  # Get search query
+        services = Service.objects.all()
 
         # Filter services by search query
         if search:
             services = Service.objects.filter(
                 Q(title__icontains=search) | Q(description__icontains=search)
             ).distinct()
-        else:
-            services = Service.objects.all()
 
         # Filter services by price range
-        filtered = request.GET.get('filter')
-        if filtered == 'basic':
+        price_filter = request.GET.get('price_filter')
+        if price_filter == 'basic':
             services = services.filter(price__lte=100)
-        elif filtered == 'midrange':
+        elif price_filter == 'midrange':
             services = services.filter(price__gte=100, price__lte=400)
-        elif filtered == 'highend':
+        elif price_filter == 'highend':
             services = services.filter(price__gte=400)
+
+        # Filter services by category
+        category_filter = request.GET.get('category_filter')
+        if category_filter and category_filter != 'all':
+            try:
+                category_filter = int(category_filter)
+                services = services.filter(category=category_filter)
+            except ValueError:
+                category_filter = None
+
+        categories = Category.objects.all()
 
         context = {
             'services': services,
             'search': search,
-            'filtered': filtered,
+            'categories': categories,
+            'price_filter': price_filter,
+            'category_filter': category_filter,
         }
         return render(request, self.template_name, context)
 
