@@ -274,6 +274,7 @@
     text-decoration: none;
     transition: transform 0.2s, background 0.2s;
     margin-bottom: 15px;
+    border: none;
 }
 
 .order_button:hover {
