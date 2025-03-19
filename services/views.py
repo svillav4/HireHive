@@ -64,6 +64,7 @@ class MyServicesView(LoginRequiredMixin, View):
         freelancer = request.user.freelancer
         services = Service.objects.filter(freelancer=freelancer)
         return render(request, self.template_name, {"services": services})
+        
 
 
 class CreateServiceView(LoginRequiredMixin, View):
@@ -95,13 +96,12 @@ class ServiceSuccessView(TemplateView):
     template_name = 'services/success.html'
 
 
-class ServiceView(TemplateView):
+class ServiceView(View):
     template_name = 'services/service_view.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        service = get_object_or_404(Service, pk=self.kwargs['pk'])
-
+    def get(self, request, pk):
+        service = get_object_or_404(Service, pk=pk)
+        
         orders_in_queue = Order.objects.filter(
             service=service,
             status__in=[
@@ -111,13 +111,48 @@ class ServiceView(TemplateView):
         ).count()
 
         reviews = Review.objects.filter(service=service).order_by('-creation_date')[:5]
-        reviews_count = reviews.count()
 
-        context['service'] = service
-        context['orders_in_queue'] = orders_in_queue
-        context['reviews'] = reviews
-        context['reviews_count'] = reviews_count
-        return context
+        context = {
+            'service': service,
+            'orders_in_queue': orders_in_queue,
+            'reviews': reviews,
+            'reviews_count': reviews.count(),
+        }
+
+        return render(request, self.template_name, context)
+    
+    def post(self, request, pk):
+        description = request.POST.get('description')
+        service = get_object_or_404(Service, pk=pk)
+
+        Order.objects.create(
+            client=request.user.client,
+            service=service,
+            description=description,
+            payment_method='Paypal',
+            status=Order.Status.PENDING_APPROVAL
+        )
+
+        # Vuelve a obtener las variables necesarias
+        orders_in_queue = Order.objects.filter(
+            service=service,
+            status__in=[
+                Order.Status.PENDING_PAYMENT,
+                Order.Status.IN_PROGRESS
+            ]
+        ).count()
+
+        reviews = Review.objects.filter(service=service).order_by('-creation_date')[:5]
+
+        context = {
+            'service': service,
+            'orders_in_queue': orders_in_queue,
+            'reviews': reviews,
+            'reviews_count': reviews.count(),
+        }
+
+        return render(request, self.template_name, context)  # 🔹 Ahora se envía todo el contexto
+
     
 
 class EditServiceView(LoginRequiredMixin, UpdateView):
