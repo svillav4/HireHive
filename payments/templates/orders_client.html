@@ -25,7 +25,10 @@
                     </div>
                     <div class="right_order">
                         {% if order.status == 'Pending Payment' %}
-                            <button href="#" class="button_1">Pay service</button>
+                        <form action="{% url 'pay_order' order.id %}" method="POST">
+                            {% csrf_token %}
+                            <button name="action" value="pay" class="button_1">Pay service</button>
+                        </form>
                         {% else %}  
                         <p class="{{order.status_color}} status_order" >{{order.status}}</p>
                         {% endif %}

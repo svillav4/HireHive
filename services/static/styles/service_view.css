@@ -76,7 +76,7 @@
 }
 
 .rating_container svg {
-    color: #FFD700;
+    color: #FFD058;
     margin-right: 5px;
 }
 
@@ -263,8 +263,9 @@
 
 .order_button {
     display: block;
-    width: 100%;
-    background: #e6b84b;
+    width: 80%;
+    margin: 0 auto;
+    background: #FFD058;
     color: black;
     text-align: center;
     padding: 12px;
@@ -273,11 +274,55 @@
     text-decoration: none;
     transition: transform 0.2s, background 0.2s;
     margin-bottom: 15px;
+    border: none;
 }
 
 .order_button:hover {
-    transform: translateY(-2px);
-    background: #d9aa3f;
+    background: #fcca4e;
+}
+
+.custome_modal{
+    border: none;
+    border-radius: 10px;
+    background-color: #f2ebe3;
+}
+
+.custome_modal::backdrop{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.modal_content h2{
+    font-weight: 700;
+}
+
+.description_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.description_container label{
+    font-weight: 600;
+}
+
+.description_container textarea{
+    width: 450px;
+    height: 250px;
+    resize: none;
+}
+
+.button_1{
+    margin: 20px 0px 0px 0px;
 }
 
 /* Responsive styles */

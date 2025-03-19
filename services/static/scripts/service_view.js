@@ -8,3 +8,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+const btnOpenModal = document.getElementById("btn_open_modal");
+const modal = document.getElementById("modal");
+const btn_close_modal = document.getElementById("btn_close_modal");
+
+btnOpenModal.addEventListener("click",() => {
+    modal.showModal();
+});
+
+btn_close_modal.addEventListener("click",() => {
+    modal.close();
+});

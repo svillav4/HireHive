@@ -25,11 +25,14 @@
                             </div>
                         </div>
                         <div class="right_order">
-                            <h4>Do you want to accept this job?</h4>
-                            <div class="job_application_buttons">
-                                <button class="btn btn-success">Accept</button>
-                                <button class="btn btn-danger">Decline</button>
-                            </div>
+                            <h4>Do you want to accept this job?</h4> 
+                            <form action="{% url 'button_orders_freelancer' order_pending_approval.id %}" method="POST">
+                                {% csrf_token %}
+                                <div class="job_application_buttons">
+                                    <button class="btn btn-success" type="submit" name="action" value="accept">Accept</button>
+                                    <button class="btn btn-danger" type="submit" name="action" value="decline">Decline</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 {% endfor %}

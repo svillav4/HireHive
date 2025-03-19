@@ -43,6 +43,10 @@ class OrdersClientView(LoginRequiredMixin, View):
             order.status_color = STATUS_COLORS.get(order.status, '')
         return render(request, self.template_name, {'orders': orders})
     
+    def post(self, request, id):
+        Order.objects.filter(id=id).update(status="In Progress")
+        return redirect('orders_client')
+    
 class OrdersFreelancerView(LoginRequiredMixin, View):
     template_name = 'orders_freelancer.html'
     
@@ -62,3 +66,12 @@ class OrdersFreelancerView(LoginRequiredMixin, View):
             else:
                 orders_pending_payment.append(order)
         return render(request, self.template_name, {'orders_pending_approval': orders_pending_approval, 'orders_pending_payment': orders_pending_payment})    
+    
+    def post(self, request, id):
+
+        action = request.POST.get("action")  # Detectar qué botón se presionó
+        if action == "accept":
+            Order.objects.filter(id=id).update(status="Pending Payment")
+        elif action == "decline":
+            Order.objects.filter(id=id).update(status="Cancelled")
+        return redirect('orders_freelancer')
