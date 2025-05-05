@@ -100,6 +100,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
+    min-width: 0;
 }
 
 .all_services_container h2{
@@ -118,6 +119,7 @@
     align-items: center;
     flex-direction: column;
     cursor: pointer;
+    min-width: 0;
 }
 
 .service_image{
@@ -140,6 +142,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    min-width: 0;
 }
 
 .service_info p{
@@ -185,12 +188,21 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .service_info_bottom a{
     color: #131c21;
     text-decoration: none;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
 }
+
 
 .service_info_bottom a:hover{
     text-decoration: underline;

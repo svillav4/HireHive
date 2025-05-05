@@ -50,7 +50,7 @@
                 </div>
                 <div class="service_info_bottom" >
                     <a href="{% url 'service_view' service.id %}">
-                        <p style="margin-bottom: 10px ;"> {{ service.title }} </p>
+                        {{ service.title }}
                     </a>
                     <b>Price: ${{ service.price }} </b>
                 </div>
