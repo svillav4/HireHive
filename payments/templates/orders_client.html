@@ -7,37 +7,37 @@
 
 {% block content %}
 
-    <h2 id="order_title">My Orders</h2>
-    <div class="container_orders">
-        {% if orders %}
-            {% for order in orders %}
-                <div class="order">
-                    <div class="left_order">
-                        <h3> {{ order.service.title }} </h3>
-                        <div class="client_profile">
-                            {% if order.service.freelancer.user.image.name == 'default-avatar.jpg' %}
-                                <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
-                            {% else %}
-                                <img src="{{ order.service.freelancer.user.image.url }}" alt="Profile Picture">
-                            {% endif %}
-                            <p>{{ order.service.freelancer.user.username}}</p>
-                        </div>
-                    </div>
-                    <div class="right_order">
-                        {% if order.status == 'Pending Payment' %}
-                        <form action="{% url 'pay_order' order.id %}" method="POST">
-                            {% csrf_token %}
-                            <button name="action" value="pay" class="button_1">Pay service</button>
-                        </form>
-                        {% else %}  
-                        <p class="{{order.status_color}} status_order" >{{order.status}}</p>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p class="no_orders">You don't have any orders yet</p>
-        {% endif %}
+<h2 id="order_title">My Orders</h2>
+<div class="container_orders">
+    {% if orders %}
+    {% for order in orders %}
+    <div class="order">
+        <div class="left_order">
+            <h3> {{ order.service.title }} </h3>
+            <div class="client_profile">
+                {% if order.service.freelancer.user.image.name == 'default-avatar.jpg' %}
+                <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
+                {% else %}
+                <img src="{{ order.service.freelancer.user.image.url }}" alt="Profile Picture">
+                {% endif %}
+                <p>{{ order.service.freelancer.user.username}}</p>
+            </div>
+        </div>
+        <div class="right_order">
+            {% if order.status == 'Pending Payment' %}
+            <form action="{% url 'pay_order' order.id %}" method="POST">
+                {% csrf_token %}
+                <button name="action" value="pay" class="button_1">Pay service</button>
+            </form>
+            {% else %}
+            <p class="{{order.status_color}} status_order">{{order.status}}</p>
+            {% endif %}
+        </div>
     </div>
+    {% endfor %}
+    {% else %}
+    <p class="no_orders">You don't have any orders yet</p>
+    {% endif %}
+</div>
 
 {% endblock content %}

@@ -11,33 +11,54 @@
         <h2 id="order_title">Pending Approval</h2>
         <div class="container_orders">
             {% if orders_pending_approval %}
-                {% for order_pending_approval in orders_pending_approval %}
-                    <div class="order">
-                        <div class="left_order">
-                            <h3> {{ order_pending_approval.service.title }} </h3>
-                            <div class="client_profile">
-                                {% if order_pending_approval.client.user.image.name == 'default-avatar.jpg' %}
-                                    <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
-                                {% else %}
-                                    <img src="{{ order_pending_approval.client.user.image.url }}" alt="Profile Picture">
-                                {% endif %}
-                                <p>{{ order_pending_approval.client.user.username }}</p>
+            {% for order_pending_approval in orders_pending_approval %}
+            <div class="order">
+                <div class="left_order">
+                    <h3> {{ order_pending_approval.service.title }} </h3>
+                    <div class="client_profile">
+                        {% if order_pending_approval.client.user.image.name == 'default-avatar.jpg' %}
+                        <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
+                        {% else %}
+                        <img src="{{ order_pending_approval.client.user.image.url }}" alt="Profile Picture">
+                        {% endif %}
+                        <p>{{ order_pending_approval.client.user.username }}</p>
+                    </div>
+                </div>
+                <div class="right_order">
+                    <button class="button_1 button_description" id="btn_open_modal">See Description</button>
+                    <dialog id="modal" class="custome_modal">
+                        <div class="description_modal">
+                            <button class="btn_close_modal" id="btn_close_modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-x" viewBox="0 0 16 16">
+                                    <path
+                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </button>
+                            <div class="info_description">
+                                <h1>Description</h1>
+                                <p>{{ order_pending_approval.description }}</p>
+                            </div>
+                            <div class="job_application">
+                                <h4>Do you want to accept this job?</h4>
+                                <form action="{% url 'button_orders_freelancer' order_pending_approval.id %}"
+                                    method="POST">
+                                    {% csrf_token %}
+                                    <div class="job_application_buttons">
+                                        <button class="btn btn-success" type="submit" name="action"
+                                            value="accept">Accept</button>
+                                        <button class="btn btn-danger" type="submit" name="action"
+                                            value="decline">Decline</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="right_order">
-                            <h4>Do you want to accept this job?</h4> 
-                            <form action="{% url 'button_orders_freelancer' order_pending_approval.id %}" method="POST">
-                                {% csrf_token %}
-                                <div class="job_application_buttons">
-                                    <button class="btn btn-success" type="submit" name="action" value="accept">Accept</button>
-                                    <button class="btn btn-danger" type="submit" name="action" value="decline">Decline</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                {% endfor %}
+                    </dialog>
+                </div>
+            </div>
+            {% endfor %}
             {% else %}
-                <p class="no_orders">You don't have any orders yet</p>
+            <p class="no_orders">You don't have any orders yet</p>
             {% endif %}
         </div>
     </div>
@@ -45,26 +66,29 @@
         <h2 id="order_title">Waiting for Payment</h2>
         <div class="container_orders">
             {% if orders_pending_payment %}
-                {% for order_pending_payment in orders_pending_payment %}
-                    <div class="order">
-                        <div class="left_order">
-                            <h3> {{ order_pending_payment.service.title }} </h3>
-                            <div class="client_profile">
-                                {% if order_pending_payment.client.user.image.name == 'default-avatar.jpg' %}
-                                    <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
-                                {% else %}
-                                    <img src="{{ order_pending_payment.client.user.image.url }}" alt="Profile Picture">
-                                {% endif %}
-                                <p>{{ order_pending_payment.client.user.username }}</p>
-                            </div>
-                        </div>
-                        <p class="{{order_pending_payment.status_color}} status_order" >{{order_pending_payment.status}}</p>
+            {% for order_pending_payment in orders_pending_payment %}
+            <div class="order">
+                <div class="left_order">
+                    <h3> {{ order_pending_payment.service.title }} </h3>
+                    <div class=" client_profile">
+                        {% if order_pending_payment.client.user.image.name == 'default-avatar.jpg' %}
+                        <img src="{% static 'images/default-avatar.jpg' %}" alt="Profile Picture">
+                        {% else %}
+                        <img src="{{ order_pending_payment.client.user.image.url }}" alt="Profile Picture">
+                        {% endif %}
+                        <p>{{ order_pending_payment.client.user.username }}</p>
                     </div>
-                {% endfor %}
+                </div>
+                <div class="right_order">
+                    <p class="{{order_pending_payment.status_color}} status_order">{{order_pending_payment.status}} </p>
+                </div>
+            </div>
+            {% endfor %}
             {% else %}
-                <p class="no_orders">You don't have any orders yet</p>
+            <p class="no_orders">You don't have any orders yet</p>
             {% endif %}
         </div>
     </div>
 </div>
+<script src="{% static 'scripts/orders_freelancer.js' %}"></script>
 {% endblock content %}
