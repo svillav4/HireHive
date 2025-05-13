@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container service_container">
-    <a href="{% url 'my_services' %}" class="go_back">
+    <a href="{% url 'home' %}" class="go_back">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M9 14l-4 -4l4 -4" />
@@ -79,21 +79,31 @@
                     {% if user.is_authenticated and  not user.is_freelancer %}
                     <button class="button_1 review_button" id="btn_leave_review">Leave review</button>
                     {% endif %}
-                    <button class="button_1 review_button">View all</button>
+                    <a href="{% url 'all_reviews' service.id %}" class="button_1 review_button">View all</a>
                 </div>
                 <dialog class="custom_modal" id="modal_review">
                     <form action="{% url 'create_review' service.id %}" method="POST">
                         {% csrf_token %}
                         <div class="modal_content">
                             <h2>Leave a review</h2>
-                            <div class="rating_container">
+                            <div class="rating_stars_container">
                                 <label for="rating">Rating:</label>
-                                <select name="rating" id="rating" required>
-                                    <option value="" disabled selected>Select rating</option>
-                                    {% for i in "12345" %}
-                                        <option value="{{ i }}">{{ i }}</option>
-                                    {% endfor %}
-                                </select>
+                                <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label for="star5" title="5 stars">★</label>
+
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label for="star4" title="4 stars">★</label>
+
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label for="star3" title="3 stars">★</label>
+
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label for="star2" title="2 stars">★</label>
+
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label for="star1" title="1 star">★</label>
+                                </div>
                             </div>
                             <div class="description_container">
                                 <label for="comment">Comment:</label>
@@ -131,9 +141,9 @@
     <form action="{% url 'create_order' service.id %}" method="POST">
         <div class="modal_content">
             {% csrf_token %}
-            <h2>Description of your project</h3>
+            <h2>Description of your order</h3>
             <div class="description_container">
-                <label for="description">Description of your project</label>
+                <label for="description">Briefly describe your order:</label>
                 <textarea name="description" id="description" cols="30" rows="10" required></textarea>
             </div>
             <button type="submit" class="button_1" id="btn_close_modal">Order</button>

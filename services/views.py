@@ -196,3 +196,20 @@ class CreateOrderView(LoginRequiredMixin, CreateView):
     
     def get_success_url(self):
         return reverse_lazy('service_view', kwargs={'pk': self.object.service.pk})
+
+
+class AllReviewsView(View):
+    template_name = 'services/all_reviews.html'
+
+    def get(self, request, pk):
+        service = get_object_or_404(Service, pk=pk)
+        reviews = Review.objects.filter(service=service).order_by('-creation_date')
+
+        for review in reviews:
+            review.creation_date = review.creation_date.strftime('%b %d, %Y')
+
+        context = {
+            'service': service,
+            'reviews': reviews,
+        }
+        return render(request, self.template_name, context)
