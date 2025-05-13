@@ -9,14 +9,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-const btnOpenModal = document.getElementById("btn_open_modal");
-const modal = document.getElementById("modal");
-const btn_close_modal = document.getElementById("btn_close_modal");
+const btnOrder = document.getElementById("btn_order");
+const modalOrder = document.getElementById("modal_order");
+const btnReview = document.getElementById("btn_leave_review");
+const modalReview = document.getElementById("modal_review");
 
-btnOpenModal.addEventListener("click",() => {
-    modal.showModal();
+btnOrder.addEventListener("click",() => {
+    modalOrder.showModal();
+
+    window.addEventListener("click", (event) => {
+        if (event.target === modalOrder) {
+            modalOrder.close();
+        }
+    });
 });
 
-btn_close_modal.addEventListener("click",() => {
-    modal.close();
+btnReview.addEventListener("click",() => {
+    modalReview.showModal();
+
+    window.addEventListener("click", (event) => {
+        if (event.target === modalReview) {
+            modalReview.close();
+        }
+    });
 });
+

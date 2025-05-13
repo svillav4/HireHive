@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView
 from django.views import View
 from .forms import ServiceForm
 from .models import Service, Review, Category
@@ -110,48 +110,28 @@ class ServiceView(View):
             ]
         ).count()
 
-        reviews = Review.objects.filter(service=service).order_by('-creation_date')[:5]
+        reviews = Review.objects.filter(service=service).order_by('-creation_date')
+        showed_reviews = reviews[:3]
+
+        for review in showed_reviews:
+            review.creation_date = review.creation_date.strftime('%b %d, %Y')
+        
+        # Calculate the average rating
+        if reviews.exists():
+            total_rating = sum(review.rating for review in reviews)
+            average_rating = total_rating / reviews.count()
+            service.rating = round(average_rating, 1)
+            service.save()
 
         context = {
             'service': service,
             'orders_in_queue': orders_in_queue,
             'reviews': reviews,
+            'showed_reviews': showed_reviews,
             'reviews_count': reviews.count(),
         }
 
         return render(request, self.template_name, context)
-    
-    def post(self, request, pk):
-        description = request.POST.get('description')
-        service = get_object_or_404(Service, pk=pk)
-
-        Order.objects.create(
-            client=request.user.client,
-            service=service,
-            description=description,
-            payment_method='Paypal',
-            status=Order.Status.PENDING_APPROVAL
-        )
-
-        # Vuelve a obtener las variables necesarias
-        orders_in_queue = Order.objects.filter(
-            service=service,
-            status__in=[
-                Order.Status.PENDING_PAYMENT,
-                Order.Status.IN_PROGRESS
-            ]
-        ).count()
-
-        reviews = Review.objects.filter(service=service).order_by('-creation_date')[:5]
-
-        context = {
-            'service': service,
-            'orders_in_queue': orders_in_queue,
-            'reviews': reviews,
-            'reviews_count': reviews.count(),
-        }
-
-        return render(request, self.template_name, context)  # 🔹 Ahora se envía todo el contexto
 
     
 
@@ -178,3 +158,41 @@ class DeleteServiceView(LoginRequiredMixin, DeleteView):
         if request.user != self.get_object().freelancer.user:
             return redirect('home')
         return super().dispatch(request, *args, **kwargs)
+
+class CreateReviewView(LoginRequiredMixin, CreateView):
+    model = Review
+    fields = ['rating', 'comment']
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user != self.get_object().client.user:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        service = get_object_or_404(Service, pk=self.kwargs['pk'])
+        form.instance.client = self.request.user.client
+        form.instance.service = service
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('service_view', kwargs={'pk': self.object.service.pk})
+    
+class CreateOrderView(LoginRequiredMixin, CreateView):
+    model = Order
+    fields = ['description']
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user != self.get_object().client.user:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        service = get_object_or_404(Service, pk=self.kwargs['pk'])
+        form.instance.client = self.request.user.client
+        form.instance.service = service
+        form.instance.status = Order.Status.PENDING_APPROVAL
+        form.instance.payment_method = 'Paypal'
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('service_view', kwargs={'pk': self.object.service.pk})

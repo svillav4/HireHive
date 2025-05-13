@@ -164,6 +164,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 30%;
 }
 
 .sidebar_box {
@@ -187,11 +188,16 @@
     border-radius: 12px;
     padding: 20px;
     box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .reviews_content {
     max-height: 300px;
-    overflow-y: auto;
+    overflow-y: hidden;
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 .review {
@@ -234,6 +240,22 @@
     font-style: italic;
 }
 
+.reviews_footer {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.button_1 {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.review_button {
+    margin: 7px;
+}
+
 .pricing_box {
     flex: 1;
     background: #f2ebe3;
@@ -269,8 +291,8 @@
     color: black;
     text-align: center;
     padding: 12px;
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 12px;
+    font-weight: bold;
     text-decoration: none;
     transition: transform 0.2s, background 0.2s;
     margin-bottom: 15px;
@@ -281,13 +303,13 @@
     background: #fcca4e;
 }
 
-.custome_modal{
+.custom_modal{
     border: none;
     border-radius: 10px;
     background-color: #f2ebe3;
 }
 
-.custome_modal::backdrop{
+.custom_modal::backdrop{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -321,9 +343,6 @@
     resize: none;
 }
 
-.button_1{
-    margin: 20px 0px 0px 0px;
-}
 
 /* Responsive styles */
 @media (max-width: 992px) {

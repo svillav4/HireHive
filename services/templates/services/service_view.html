@@ -53,11 +53,10 @@
 
         <div class="service_sidebar">
             <div class="sidebar_box reviews_box">
-                <h3>Recent Reviews</h3>
-
                 <div class="reviews_content">
+                    <h3>Recent Reviews</h3>
                     {% if reviews %}
-                        {% for review in reviews %}
+                        {% for review in showed_reviews %}
                         <div class="review">
                             <div class="review_header">
                                 <span class="reviewer_name">{{ review.client.user.username }}</span>
@@ -76,6 +75,34 @@
                         <p class="no_reviews">No reviews yet</p>
                     {% endif %}
                 </div>
+                <div class="reviews_footer">
+                    {% if user.is_authenticated and  not user.is_freelancer %}
+                    <button class="button_1 review_button" id="btn_leave_review">Leave review</button>
+                    {% endif %}
+                    <button class="button_1 review_button">View all</button>
+                </div>
+                <dialog class="custom_modal" id="modal_review">
+                    <form action="{% url 'create_review' service.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="modal_content">
+                            <h2>Leave a review</h2>
+                            <div class="rating_container">
+                                <label for="rating">Rating:</label>
+                                <select name="rating" id="rating" required>
+                                    <option value="" disabled selected>Select rating</option>
+                                    {% for i in "12345" %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="description_container">
+                                <label for="comment">Comment:</label>
+                                <textarea name="comment" id="comment" cols="30" rows="10" required></textarea>
+                            </div>
+                            <button type="submit" class="button_1">Submit</button>
+                        </div>
+                    </form>
+                </dialog>
             </div>
 
             <div class="sidebar_box pricing_box {% if user.is_authenticated and user.freelancer != service.freelancer %}small-box{% endif %}">
@@ -86,7 +113,7 @@
                 {% if not user.is_authenticated %}
                 <a href="{% url 'login' %}" class="order_button">Login to Order</a>
                 {% elif user.is_authenticated and not user.is_freelancer %}
-                <button class="order_button" id="btn_open_modal">Order Now</button>
+                <button class="order_button" id="btn_order">Order Now</button>
                 {% endif %}
                 
                 {% if user.freelancer == service.freelancer %}
@@ -100,7 +127,7 @@
         </div>
     </div>
 </div>
-<dialog class="custome_modal" id="modal">
+<dialog class="custom_modal" id="modal_order">
     <form action="{% url 'create_order' service.id %}" method="POST">
         <div class="modal_content">
             {% csrf_token %}
