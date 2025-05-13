@@ -52,6 +52,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .client_profile img{
@@ -65,6 +66,11 @@
     margin: 0%;
 }
 
+.button_description{
+    padding: 10px;
+    margin: 0%;
+}
+
 .right_order{
     display: flex;
     flex-direction: column;
@@ -74,6 +80,55 @@
 
 .right_order h4{
     text-align: center;
+}
+
+.custome_modal{
+    border: none;
+    border-radius: 10px;
+    background-color: #f2ebe3;
+    padding: 30px;
+    position: relative;
+}
+
+.btn_close_modal{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border: none;
+    padding: 0%;
+    background-color: #f2ebe3;
+}
+
+.info_description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info_description h1{
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.info_description p{
+    width: 100%;
+    height: 200px;
+    margin: 30px 0px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.job_application{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custome_modal::backdrop{
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .status_order{
