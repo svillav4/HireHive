@@ -117,7 +117,7 @@ AUTH_USER_MODEL = 'accounts.User' #This line is added to the settings.py file to
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC-5"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
