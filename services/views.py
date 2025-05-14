@@ -159,14 +159,9 @@ class DeleteServiceView(LoginRequiredMixin, DeleteView):
             return redirect('home')
         return super().dispatch(request, *args, **kwargs)
 
-class CreateReviewView(LoginRequiredMixin, CreateView):
+class CreateReviewView(CreateView):
     model = Review
     fields = ['rating', 'comment']
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.user != self.get_object().client.user:
-            return redirect('home')
-        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         service = get_object_or_404(Service, pk=self.kwargs['pk'])
@@ -177,14 +172,9 @@ class CreateReviewView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('service_view', kwargs={'pk': self.object.service.pk})
     
-class CreateOrderView(LoginRequiredMixin, CreateView):
+class CreateOrderView(CreateView):
     model = Order
     fields = ['description']
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.user != self.get_object().client.user:
-            return redirect('home')
-        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         service = get_object_or_404(Service, pk=self.kwargs['pk'])
