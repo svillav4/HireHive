@@ -24,11 +24,11 @@
                         <p>{{ order_pending_approval.client.user.username }}</p>
                     </div>
                 </div>
-                <div class="right_order">
-                    <button class="button_1 button_description" id="btn_open_modal">See Description</button>
-                    <dialog id="modal" class="custome_modal">
+                <div class="right_order information" id="right_order">
+                    <button class="button_1 button_description btn_open_modal" data-role="open">See Description</button>
+                    <dialog class="custom_modal modall">
                         <div class="description_modal">
-                            <button class="btn_close_modal" id="btn_close_modal">
+                            <button class="btn_close_modal" data-role="close">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-x" viewBox="0 0 16 16">
                                     <path

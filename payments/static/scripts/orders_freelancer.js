@@ -1,11 +1,29 @@
-const btnOpenModal = document.getElementById("btn_open_modal");
-const modal = document.getElementById("modal");
-const btnCloseModal = document.getElementById("btn_close_modal");
+window.onload = function() {
+    enableButtons();
+}
 
-btnOpenModal.addEventListener("click",() => {
-    modal.showModal();
-});
+const buttonsOpen = []
+const buttonsClose = []
+const modals = []
 
-btnCloseModal.addEventListener("click",() => {
-    modal.close();
-});
+function enableButtons() {
+    const var1 = document.getElementsByClassName("information")
+    for (let i = 0; i < var1.length; i++) {
+        buttonsOpen.push(var1[i].getElementsByClassName("btn_open_modal")[0]);
+        buttonsClose.push(var1[i].getElementsByClassName("btn_close_modal")[0]);
+        modals.push(var1[i].getElementsByClassName("modall")[0]);
+
+
+        
+        buttonsOpen[i].addEventListener("click",() => {
+            modals[i].showModal();
+            console.log("Abrir:", modals[i]);
+        });
+        buttonsClose[i].addEventListener("click",() => {
+            modals[i].close();
+            console.log("Cerrar:", modals[i]);
+        });
+        
+    }
+
+}
