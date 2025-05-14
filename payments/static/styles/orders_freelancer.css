@@ -82,7 +82,7 @@
     text-align: center;
 }
 
-.custome_modal{
+.custom_modal{
     border: none;
     border-radius: 10px;
     background-color: #f2ebe3;
@@ -127,7 +127,7 @@
     align-items: center;
 }
 
-.custome_modal::backdrop{
+.custom_modal::backdrop{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
