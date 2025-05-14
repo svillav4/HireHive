@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, logout
 from .models import Client, Freelancer
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.utils.translation import gettext as _
 
 class SignupView(View):
     template_name = 'signup.html'
@@ -53,7 +53,7 @@ class LoginView(View):
             login(request, user)
             return redirect('home')
         else:
-            error = 'Invalid username or password'
+            error = _('Invalid username or password')
         context = {
             'form': form,
             'error': error
