@@ -22,8 +22,10 @@ from django.urls import path, include
 from services.views import HomePageView
 from django.conf.urls.i18n import i18n_patterns
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
 ] + i18n_patterns(
     path("", HomePageView.as_view(), name="home"),
     path("accounts/", include("accounts.urls")),
