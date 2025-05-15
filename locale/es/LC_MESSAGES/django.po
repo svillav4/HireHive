@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-14 19:27-0500\n"
+"POT-Creation-Date: 2025-05-15 12:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: .\accounts\templates\freelancer_details.html:13
 msgid "Freelancer Details"
-msgstr "Detalles del Freelancer"
+msgstr "Detalles de Freelancer"
 
 #: .\accounts\templates\freelancer_details.html:16
 msgid "Experience"
@@ -29,7 +29,7 @@ msgstr "Experiencia"
 
 #: .\accounts\templates\freelancer_details.html:20
 msgid "Portfolio Link"
-msgstr "Enlace del portafolio"
+msgstr "Enlace portafolio"
 
 #: .\accounts\templates\freelancer_details.html:24
 msgid "Save"
@@ -42,7 +42,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            <p>Detalles guardados con éxito!</p>\n"
+"            <p>¡Detalles guardados con éxito!</p>\n"
 "        "
 
 #: .\accounts\templates\freelancer_details.html:32
@@ -52,7 +52,7 @@ msgstr "Cerrar"
 #: .\accounts\templates\login.html:14 .\accounts\templates\login.html:31
 #: .\hirehive_project\templates\base.html:114
 msgid "Login"
-msgstr "Ingresar"
+msgstr "Iniciar sesión"
 
 #: .\accounts\templates\login.html:18 .\accounts\templates\signup.html:27
 msgid "Username"
@@ -98,19 +98,20 @@ msgstr "Nombre de usuario o contraseña no validos"
 #: .\hirehive_project\templates\base.html:55
 #: .\hirehive_project\templates\base.html:84
 msgid "Orders"
-msgstr "Ordenes"
+msgstr "Pedidos"
 
 #: .\hirehive_project\templates\base.html:56
+#: .\services\templates\services\my_services.html:12
 msgid "My Services"
-msgstr "Mis servicios"
+msgstr "Mis Servicios"
 
 #: .\hirehive_project\templates\base.html:86
 msgid "Logout"
-msgstr "Salir"
+msgstr "Cerrar sesion"
 
 #: .\payments\templates\orders_client.html:11
 msgid "My Orders"
-msgstr "Mis ordenes"
+msgstr "Mis Pedidos"
 
 #: .\payments\templates\orders_client.html:31
 msgid "Pay service"
@@ -120,7 +121,7 @@ msgstr "Pagar servicio"
 #: .\payments\templates\orders_freelancer.html:62
 #: .\payments\templates\orders_freelancer.html:89
 msgid "You don't have any orders yet"
-msgstr "Todavia no tienes ordenes"
+msgstr "Aún no tienes ningún pedido"
 
 #: .\payments\templates\orders_freelancer.html:12 .\payments\views.py:11
 msgid "Pending Approval"
@@ -131,12 +132,15 @@ msgid "See Description"
 msgstr "Ver descripción"
 
 #: .\payments\templates\orders_freelancer.html:40
+#: .\services\templates\services\create_service.html:23
+#: .\services\templates\services\edit_service.html:23
+#: .\services\templates\services\service_view.html:50
 msgid "Description"
 msgstr "Descripción"
 
 #: .\payments\templates\orders_freelancer.html:44
 msgid "Do you want to accept this job?"
-msgstr "Desea aceptar este trabajo?"
+msgstr "¿Quieres aceptar este trabajo?"
 
 #: .\payments\templates\orders_freelancer.html:50
 msgid "Accept"
@@ -148,15 +152,15 @@ msgstr "Rechazar"
 
 #: .\payments\templates\orders_freelancer.html:67
 msgid "Waiting for Payment"
-msgstr "Esperando el pago"
+msgstr "Esperando pago"
 
 #: .\payments\templates\service_orders.html:11
 msgid "My Service Orders"
-msgstr "Mis ordenes de servicios"
+msgstr "Mis Ordenes de Servicio"
 
 #: .\payments\templates\service_orders.html:33
 msgid "You don't have any order yet"
-msgstr "Todavia no tienes ordenes"
+msgstr "Aún no tiene ningún pedido"
 
 #: .\payments\views.py:9
 msgid "Completed"
@@ -174,73 +178,94 @@ msgstr "Pago pendiente"
 msgid "In Progress"
 msgstr "En progreso"
 
-#: .\services\templates\pages\home.html:12
+#: .\services\templates\pages\home.html:14
+msgid "Select weather"
+msgstr "Seleccionar clima"
+
+#: .\services\templates\pages\home.html:15
+msgid "Static weather"
+msgstr "Clima estatico"
+
+#: .\services\templates\pages\home.html:16
+msgid "Weather API"
+msgstr "API del clima"
+
+#: .\services\templates\pages\home.html:22
+msgid "Medellin temperature"
+msgstr "Temperatura en Medellin"
+
+#: .\services\templates\pages\home.html:33
 msgid "Find Top Talent or Your Next Gig"
 msgstr "Encuentra el mejor talento o tu proximo trabajo"
 
-#: .\services\templates\pages\home.html:15
+#: .\services\templates\pages\home.html:36
 msgid "Search for services"
-msgstr "Pagar servicio"
+msgstr "Buscar servicios"
 
-#: .\services\templates\pages\home.html:29
+#: .\services\templates\pages\home.html:50
 msgid "Featured"
 msgstr "Destacados"
 
-#: .\services\templates\pages\home.html:31
+#: .\services\templates\pages\home.html:52
 msgid "Filters"
 msgstr "Filtros"
 
-#: .\services\templates\pages\home.html:34
+#: .\services\templates\pages\home.html:55
 msgid "Select Filter"
 msgstr "Seleccionar Filtro"
 
-#: .\services\templates\pages\home.html:40
+#: .\services\templates\pages\home.html:61
 msgid "Under $100"
 msgstr "Menos de $100"
 
-#: .\services\templates\pages\home.html:45
+#: .\services\templates\pages\home.html:66
 msgid "Mid-range ($100 - $400)"
 msgstr "Rango medio ($100 - $400)"
 
-#: .\services\templates\pages\home.html:50
+#: .\services\templates\pages\home.html:71
 msgid "High-end ($400+)"
 msgstr "Gama alta ($400+)"
 
-#: .\services\templates\pages\home.html:54
+#: .\services\templates\pages\home.html:75
 msgid "Select Category"
 msgstr "Seleccionar Categoria"
 
-#: .\services\templates\pages\home.html:56
+#: .\services\templates\pages\home.html:77
 msgid "All Categories"
 msgstr "Todas las Categorias"
 
-#: .\services\templates\pages\home.html:65
+#: .\services\templates\pages\home.html:86
 msgid "Clear"
 msgstr "Limpiar"
 
-#: .\services\templates\pages\home.html:66
+#: .\services\templates\pages\home.html:87
 msgid "Apply"
 msgstr "Aplicar"
 
-#: .\services\templates\pages\home.html:107
+#: .\services\templates\pages\home.html:128
+#: .\services\templates\services\my_services.html:56
+#: .\services\templates\services\service_view.html:121
 msgid "Price: $"
 msgstr "Precio: $"
 
 #: .\services\templates\services\all_reviews.html:17
+#: .\services\templates\services\service_view.html:16
 msgid "Back"
 msgstr "Volver"
 
 #: .\services\templates\services\all_reviews.html:19
+#: .\services\templates\services\service_view.html:58
 msgid "Recent Reviews"
-msgstr "Reseñas recientes"
+msgstr "Comentarios recientes"
 
 #: .\services\templates\services\all_reviews.html:33
 msgid "Published in: "
 msgstr "Publicado el: "
 
 #: .\services\templates\services\all_reviews.html:37
+#: .\services\templates\services\service_view.html:76
 msgid "No reviews yet"
-msgstr "No hay reseñas todavia"
+msgstr "No hay comentarios"
 
 #: .\services\templates\services\confirm_delete.html:12
 msgid ""
@@ -255,12 +280,132 @@ msgstr ""
 "        "
 
 #: .\services\templates\services\confirm_delete.html:19
+#: .\services\templates\services\service_view.html:133
 msgid "Delete"
-msgstr "Eliminar"
+msgstr "Borrar"
 
 #: .\services\templates\services\confirm_delete.html:21
+#: .\services\templates\services\edit_service.html:74
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: .\services\templates\services\create_service.html:13
+#: .\services\templates\services\create_service.html:72
+msgid "Create Service"
+msgstr "Crear servicio"
+
+#: .\services\templates\services\create_service.html:18
+#: .\services\templates\services\edit_service.html:18
+msgid "Title"
+msgstr "Titulo"
+
+#: .\services\templates\services\create_service.html:35
+#: .\services\templates\services\edit_service.html:35
+msgid "Click to upload image"
+msgstr "Click para cargar imagen"
+
+#: .\services\templates\services\create_service.html:42
+#: .\services\templates\services\edit_service.html:42
+msgid "Price (USD)"
+msgstr "Precio (USD)"
+
+#: .\services\templates\services\create_service.html:53
+#: .\services\templates\services\edit_service.html:53
+msgid "Category"
+msgstr "Categoria"
+
+#: .\services\templates\services\create_service.html:59
+#: .\services\templates\services\edit_service.html:59
+msgid "Delivery Time (Days)"
+msgstr "Tiempo de entrega (Dias)"
+
+#: .\services\templates\services\edit_service.html:13
+msgid "Edit Service"
+msgstr "Editar servicio"
+
+#: .\services\templates\services\edit_service.html:72
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: .\services\templates\services\my_services.html:20
+msgid "Add service"
+msgstr "Añadir servicio"
+
+#: .\services\templates\services\my_services.html:21
+msgid "Create new service"
+msgstr "Crear nuevo servicio"
+
+#: .\services\templates\services\service_view.html:33
+msgid "reviews"
+msgstr "Reseñas"
+
+#: .\services\templates\services\service_view.html:38
+msgid "Orders in Queue"
+msgstr "Pedidos en cola"
+
+#: .\services\templates\services\service_view.html:72
+msgid "Published in:"
+msgstr "Publicado el:"
+
+#: .\services\templates\services\service_view.html:81
+msgid "Leave review"
+msgstr "Dejar comentario"
+
+#: .\services\templates\services\service_view.html:83
+msgid "View all"
+msgstr "Ver todos"
+
+#: .\services\templates\services\service_view.html:89
+msgid "Leave a review"
+msgstr "Dejar un comentario"
+
+#: .\services\templates\services\service_view.html:91
+msgid "Rating:"
+msgstr "Valoracion:"
+
+#: .\services\templates\services\service_view.html:110
+msgid "Comment:"
+msgstr "Comentario:"
+
+#: .\services\templates\services\service_view.html:113
+msgid "Submit"
+msgstr "Enviar"
+
+#: .\services\templates\services\service_view.html:122
+msgid "Delivery Time: "
+msgstr "Tiempo de entrega: "
+
+#: .\services\templates\services\service_view.html:122
+msgid "days"
+msgstr "dias"
+
+#: .\services\templates\services\service_view.html:125
+msgid "Login to Order"
+msgstr "Incia sesion para ordenar"
+
+#: .\services\templates\services\service_view.html:127
+msgid "Order Now"
+msgstr "Ordenar ahora"
+
+#: .\services\templates\services\service_view.html:132
+msgid "Edit"
+msgstr "Editar"
+
+#: .\services\templates\services\service_view.html:134
+msgid "See Orders"
+msgstr "Ver pedidos"
+
+#: .\services\templates\services\service_view.html:145
+msgid "Description of your order"
+msgstr "Descripción de su orden"
+
+#: .\services\templates\services\service_view.html:147
+msgid "Briefly describe your order: "
+msgstr "Describa brevemente su pedido: "
+
+#: .\services\templates\services\service_view.html:150
+msgid "Order"
+msgstr "Pedido"
 
 #: .\services\templates\services\success.html:13
 msgid ""

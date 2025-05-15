@@ -13,7 +13,7 @@
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M9 14l-4 -4l4 -4" />
             <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
-        </svg> Back
+        </svg> {% translate "Back" %}
     </a>
 
     <div class="service_card">
@@ -30,12 +30,12 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                             </svg>
-                            <span>{{ service.rating }} ({{ reviews_count }} reviews)</span>
+                            <span>{{ service.rating }} ({{ reviews_count }} {% translate "reviews" %})</span>
                             <div class="orders_queue">
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-package">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /><path d="M16 5.25l-8 4.5" />
                                 </svg>
-                                <span>{{ orders_in_queue }} Orders in Queue</span>
+                                <span>{{ orders_in_queue }} {% translate "Orders in Queue" %}</span>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="service_description">
-                <h3>Description</h3>
+                <h3>{% translate "Description" %}</h3>
                 <p>{{ service.description }}</p>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="service_sidebar">
             <div class="sidebar_box reviews_box">
                 <div class="reviews_content">
-                    <h3>Recent Reviews</h3>
+                    <h3>{% translate "Recent Reviews" %}</h3>
                     {% if reviews %}
                         {% for review in showed_reviews %}
                         <div class="review">
@@ -69,26 +69,26 @@
                                 </span>
                             </div>
                             <p class="review_text">{{ review.comment }}</p>
-                            <p class="review_text">Published in: {{ review.creation_date }}</small>
+                            <p class="review_text">{% translate "Published in:" %} {{ review.creation_date }}</small>
                         </div>
                         {% endfor %}
                     {% else %}
-                        <p class="no_reviews">No reviews yet</p>
+                        <p class="no_reviews">{% translate "No reviews yet" %}</p>
                     {% endif %}
                 </div>
                 <div class="reviews_footer">
                     {% if user.is_authenticated and  not user.is_freelancer %}
-                    <button class="button_1 review_button" id="btn_leave_review">Leave review</button>
+                    <button class="button_1 review_button" id="btn_leave_review">{% translate "Leave review" %}</button>
                     {% endif %}
-                    <a href="{% url 'all_reviews' service.id %}" class="button_1 review_button">View all</a>
+                    <a href="{% url 'all_reviews' service.id %}" class="button_1 review_button">{% translate "View all" %}</a>
                 </div>
                 <dialog class="custom_modal" id="modal_review">
                     <form action="{% url 'create_review' service.id %}" method="POST">
                         {% csrf_token %}
                         <div class="modal_content">
-                            <h2>Leave a review</h2>
+                            <h2>{% translate "Leave a review" %}</h2>
                             <div class="rating_stars_container">
-                                <label for="rating">Rating:</label>
+                                <label for="rating">{% translate "Rating:" %}</label>
                                 <div class="star-rating">
                                 <input type="radio" id="star5" name="rating" value="5" required/>
                                 <label for="star5" title="5 stars">★</label>
@@ -107,10 +107,10 @@
                                 </div>
                             </div>
                             <div class="description_container">
-                                <label for="comment">Comment:</label>
+                                <label for="comment">{% translate "Comment:" %}</label>
                                 <textarea name="comment" id="comment" cols="30" rows="10" maxlength="250" required></textarea>
                             </div>
-                            <button type="submit" class="button_1">Submit</button>
+                            <button type="submit" class="button_1">{% translate "Submit" %}</button>
                         </div>
                     </form>
                 </dialog>
@@ -118,20 +118,20 @@
 
             <div class="sidebar_box pricing_box {% if user.is_authenticated and user.freelancer != service.freelancer %}small-box{% endif %}">
 
-                <h3>Price: ${{ service.price }}</h3>
-                <p class="delivery_time">Delivery Time: {{ service.delivery_time }} days</p>
+                <h3>{% translate "Price: $" %}{{ service.price }}</h3>
+                <p class="delivery_time">{% translate "Delivery Time: " %}{{ service.delivery_time }} {% translate "days" %}</p>
                 
                 {% if not user.is_authenticated %}
-                <a href="{% url 'login' %}" class="order_button">Login to Order</a>
+                <a href="{% url 'login' %}" class="order_button">{% translate "Login to Order" %}</a>
                 {% elif user.is_authenticated and not user.is_freelancer %}
-                <button class="order_button" id="btn_order">Order Now</button>
+                <button class="order_button" id="btn_order">{% translate "Order Now" %}</button>
                 {% endif %}
                 
                 {% if user.freelancer == service.freelancer %}
                 <div class="service_actions">
-                    <a href="{% url 'edit_service' service.pk %}" class="edit">Edit</a>
-                    <a href="{% url 'delete_service' service.pk %}" class="delete">Delete</a>
-                    <a href="{% url 'service_orders' service.pk %}" class="orders">See Orders</a>
+                    <a href="{% url 'edit_service' service.pk %}" class="edit">{% translate "Edit" %}</a>
+                    <a href="{% url 'delete_service' service.pk %}" class="delete">{% translate "Delete" %}</a>
+                    <a href="{% url 'service_orders' service.pk %}" class="orders">{% translate "See Orders" %}</a>
                 </div>
                 {% endif %}
             </div>
@@ -142,12 +142,12 @@
     <form action="{% url 'create_order' service.id %}" method="POST">
         <div class="modal_content">
             {% csrf_token %}
-            <h2>Description of your order</h3>
+            <h2>{% translate "Description of your order" %}</h3>
             <div class="description_container">
-                <label for="description">Briefly describe your order:</label>
+                <label for="description">{% translate "Briefly describe your order: " %}</label>
                 <textarea name="description" id="description" cols="30" rows="10" required></textarea>
             </div>
-            <button type="submit" class="button_1" id="btn_close_modal">Order</button>
+            <button type="submit" class="button_1" id="btn_close_modal">{% translate "Order" %}</button>
         </div>
     </form>
 </dialog>
