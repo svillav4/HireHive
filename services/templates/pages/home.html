@@ -11,15 +11,15 @@
         <form action="" method="get">
             {% csrf_token %}
             <select name="select_weather" id="select_weather"  onchange="this.form.submit()">
-                <option value="">Select weather</option>
-                <option value="static">Static weather</option>
-                <option value="weather_stack">Weather API</option>
+                <option value="">{% translate "Select weather" %}</option>
+                <option value="static">{% translate "Static weather" %}</option>
+                <option value="weather_stack">{% translate "Weather API" %}</option>
             </select>
-            <input type="hidden" name="search" value="{{ search }}"> <!-- Keep the search term -->
-            <input type="hidden" name="price_filter" value="{{ price_filter }}">  <!-- Keep the filter -->
-            <input type="hidden" name="category_filter" value="{{ category_filter }}">  <!-- Keep the category filter -->
+            <input type="hidden" name="search" value="{{ search }}">
+            <input type="hidden" name="price_filter" value="{{ price_filter }}">
+            <input type="hidden" name="category_filter" value="{{ category_filter }}">
         </form>
-        <p style="color: white;">Medellin temperature</p>
+        <p style="color: white;">{% translate "Medellin temperature" %}</p>
         <div class="weather_icon" id="weather_icon_1">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-thermometer-half" viewBox="0 0 16 16">
                 <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415"/>

@@ -10,17 +10,17 @@
 <form action="{% url 'create_service' %}" method="POST" enctype="multipart/form-data" autocomplete="off">
   {% csrf_token %}
   <div class="container_create_service">
-    <h1>Create Service</h1>
+    <h1>{% translate "Create Service" %}</h1>
     <div class="input_box">
 
       <div class="input_field">
         <input class="input" type="text" name="title" id="title" required value="{{ form.title.value|default_if_none:'' }}">
-        <label for="title">Title</label>
+        <label for="title">{% translate "Title" %}</label>
       </div>
 
       <div class="input_field">
         <textarea class="input" name="description" id="description">{{ form.description.value|default_if_none:'' }}</textarea>
-        <label for="description">Description</label>
+        <label for="description">{% translate "Description" %}</label>
       </div>
 
       <div class="input_field file_upload_field">
@@ -32,14 +32,14 @@
             </svg>
           </div>
           <div class="text">
-            <span>Click to upload image</span>
+            <span>{% translate "Click to upload image" %}</span>
           </div>
         </label>
       </div>
 
       <div class="input_field">
         <input class="input" type="number" name="price" id="price" required value="{{ form.price.value|default_if_none:'' }}">
-        <label for="price">Price (USD)</label>
+        <label for="price">{% translate "Price (USD)" %}</label>
       </div>
 
       <div class="input_field">
@@ -50,13 +50,13 @@
           </option>        
           {% endfor %}
         </select>
-        <label for="category">Category</label>
+        <label for="category">{% translate "Category" %}</label>
       </div>
 
       <div class="input_field">
         <input class="input" type="number" name="delivery_time" id="delivery_time" required
           value="{{ form.delivery_time.value|default_if_none:'' }}">
-        <label for="delivery_time">Delivery Time (Days)</label>
+        <label for="delivery_time">{% translate "Delivery Time (Days)" %}</label>
       </div>
   
     </div>
@@ -69,7 +69,7 @@
         {% endfor %}
     </div>
     {% endif %}
-    <button class="button_1" type="submit">Create Service</button>
+    <button class="button_1" type="submit">{% translate "Create Service" %}</button>
   </div>
 </form>
 <script src="{% static 'scripts/create_service.js' %}"></script>

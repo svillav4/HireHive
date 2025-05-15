@@ -9,7 +9,7 @@
 {% block content %}
 <div>
     <div class="featured_header">
-        <h1>My Services</h1>
+        <h1>{% translate "My Services" %}</h1>
     </div>
     <div class="all_services_container">
         <div class="service_container" onclick="enterService()" data-url="{% url 'create_service' %}">
@@ -17,8 +17,8 @@
                 <img src="{% static 'images/plus.svg' %}" alt="Create">
             </div>
             <div class="new_service_info">
-                <b>Add service</b>
-                <p>Create new service</p>
+                <b>{% translate "Add service" %}</b>
+                <p>{% translate "Create new service" %}</p>
             </div>
         </div>
         {% for service in services %}
@@ -53,7 +53,7 @@
                     <a href="{% url 'service_view' service.id %}">
                         {{ service.title }}
                     </a>
-                    <b>Price: ${{ service.price }} </b>
+                    <b>{% translate "Price: $" %}{{ service.price }} </b>
                 </div>
             </div>
         </div>
