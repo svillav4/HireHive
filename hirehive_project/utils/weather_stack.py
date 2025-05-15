@@ -1,17 +1,20 @@
 import requests
 import dotenv
 import os
+from ..interfaces import WeatherInterface
 
-# Cargar las variables de entorno desde el archivo .env
 dotenv.load_dotenv()
 
-# Obtener la clave de API de las variables de entorno
-api_key = os.getenv("WEATHER_API_KEY")
+class WeatherStackProvider(WeatherInterface):
+    def __init__(self):
+        self.api_key = os.getenv("WEATHER_API_KEY")
 
-def get_weather_data():
-    url = "https://api.weatherstack.com/current?access_key=61b91c5214621236db78435efd2cb3d0"
-    querystring = {"query":"Medellin"}
-    response = requests.get(url, params=querystring)
-    temp = response.json()["current"]["temperature"]
-
-    return temp
+    def get_weather(self, city):
+        url = f"http://api.weatherstack.com/current?access_key={self.api_key}&query={city}"
+        querystring = {"query":"Medellin"}
+        response = requests.get(url, params=querystring)
+        data = response.json()
+        if "current" in data:
+            return data["current"]["temperature"]
+        else:
+            raise Exception("Error fetching weather data")
