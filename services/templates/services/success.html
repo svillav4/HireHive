@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %} 
+{% load i18n %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/success.css' %}">
@@ -9,9 +10,11 @@
 <div class="center_container">
   <div class="row justify-content-center">
       <div class="success_alert">
+        {% blocktranslate %}
           <h3>Service created successfully</h3>
           <p>Your service has been successfully added.</p>
-          <a href="{% url 'my_services' %}" class="btn mt-3">My services</a>
+        {% endblocktranslate %}
+          <a href="{% url 'my_services' %}" class="btn mt-3">{% translate "My services" %}</a>
       </div>
   </div>
 </div>

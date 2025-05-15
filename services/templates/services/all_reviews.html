@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/all_reviews.css' %}">
@@ -13,9 +14,9 @@
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M9 14l-4 -4l4 -4" />
             <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
-        </svg> Back
+        </svg> {% translate "Back" %}
         </a>
-        <h3 class="title">Recent Reviews</h3>
+        <h3 class="title">{% translate "Recent Reviews" %}</h3>
         {% if reviews %}
             {% for review in reviews %}
             <div class="review">
@@ -29,11 +30,11 @@
                     </span>
                 </div>
                 <p class="review_text">{{ review.comment }}</p>
-                <p class="review_text date">Published in: {{ review.creation_date }}</small>
+                <p class="review_text date">{% translate "Published in: " %}{{ review.creation_date }}</small>
             </div>
             {% endfor %}
         {% else %}
-            <p class="no_reviews">No reviews yet</p>
+            <p class="no_reviews">{% translate "No reviews yet" %}</p>
         {% endif %}
     </div>
 </div>

@@ -3,15 +3,14 @@ from django.views.generic import View, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Order
 from django.db.models import Q
-
-# Create your views here.
+from django.utils.translation import gettext as _
 
 STATUS_COLORS = {
-    'Completed': 'text_completed',
-    'Cancelled': 'text_cancelled',
-    'Pending Approval': 'text_pending_approval',
-    'Pending Payment': 'text_pending_payment',
-    'In Progress': 'text_in_progress',
+    _('Completed'): 'text_completed',
+    _('Cancelled'): 'text_cancelled',
+    _('Pending Approval'): 'text_pending_approval',
+    _('Pending Payment'): 'text_pending_payment',
+    _('In Progress'): 'text_in_progress',
 }
 
 class SeviceOrdersView(LoginRequiredMixin, View):

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/home.css' %}">
@@ -8,10 +9,10 @@
 {% block content %}
     <div class="full_search_container">
         <div class="search_container">
-            <h1>Find Top Talent or Your Next Gig</h2>
+            <h1>{% translate "Find Top Talent or Your Next Gig" %}</h2>
             <div class="search_box">
                 <form action="{% url 'home' %}" method="GET">
-                    <input type="text" placeholder="Search for services" id="search" name="search" value="{{ search|default_if_none:'' }}"/>
+                    <input type="text" placeholder="{% translate 'Search for services' %}" id="search" name="search" value="{{ search|default_if_none:'' }}"/>
                     <button type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-search" viewBox="0 0 16 16" >
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -25,34 +26,34 @@
     </div>
     <div>
         <div class="featured_header">
-            <h1>Featured</h1>
+            <h1>{% translate "Featured" %}</h1>
             <div class="filter_dropdown">
-                <button class="btn btn-outline-dark dropdown-toggle" onclick="toggleFilter()">Filters</button>
+                <button class="btn btn-outline-dark dropdown-toggle" onclick="toggleFilter()">{% translate "Filters" %}</button>
                 <form method="GET" action="{% url 'home' %}">
                     <div class="filter_menu">
-                        <p class="fw-bold text-muted">Select Filter</p>
+                        <p class="fw-bold text-muted">{% translate "Select Filter" %}</p>
 
                         <!-- Price range filter -->
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="price_filter" value="basic" 
                             {% if price_filter == 'basic' %} checked {% endif %}>
-                            <label class="form-check-label">Under $100</label>
+                            <label class="form-check-label">{% translate "Under $100" %}</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="price_filter" value="midrange"
                             {% if price_filter == 'midrange' %} checked {% endif %}>
-                            <label class="form-check-label">Mid-range ($100 - $400)</label>
+                            <label class="form-check-label">{% translate "Mid-range ($100 - $400)" %}</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="price_filter" value="highend"
                             {% if price_filter == 'highend' %} checked {% endif %}>
-                            <label class="form-check-label">High-end ($400+)</label>
+                            <label class="form-check-label">{% translate "High-end ($400+)" %}</label>
                         </div>
 
                         <!-- Category filter -->
-                        <p class="fw-bold text-muted mt-3">Select Category</p>
+                        <p class="fw-bold text-muted mt-3">{% translate "Select Category" %}</p>
                         <select name="category_filter" class="form-select">
-                            <option value="all">All Categories</option>
+                            <option value="all">{% translate "All Categories" %}</option>
                             {% for category in categories %}
                             <option value="{{ category.id }}" {% if category_filter == category.id %}selected{% endif %}>
                                 {{ category.name }}
@@ -61,8 +62,8 @@
                         </select>
 
                         <div class="mt-3 d-flex justify-content-between">
-                            <button type="reset" class="btn btn-sm btn-light" onclick="clearFilters()">Clear</button>
-                            <button type="submit" class="btn btn-sm btn-dark">Apply</button>
+                            <button type="reset" class="btn btn-sm btn-light" onclick="clearFilters()">{% translate "Clear" %}</button>
+                            <button type="submit" class="btn btn-sm btn-dark">{% translate "Apply" %}</button>
                         </div>
 
                     </div>
@@ -103,7 +104,7 @@
                         <a href="{% url 'service_view' service.id %}">
                             {{ service.title }}
                         </a>
-                        <b>Price: ${{ service.price }} </b>
+                        <b>{% translate "Price: $" %}{{ service.price }} </b>
                     </div>
                 </div>
             </div>
