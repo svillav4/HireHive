@@ -31,6 +31,7 @@ To keep a copy of our project, you can follow the next steps:
     HireHive
     ├───accounts                    
     ├───hirehive_project
+    ├───locale
     ├───media
     ├───payments
     ├───services
