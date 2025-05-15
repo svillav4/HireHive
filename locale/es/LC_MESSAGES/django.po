@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-13 21:54-0500\n"
+"POT-Creation-Date: 2025-05-14 19:27-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
 #: .\accounts\templates\freelancer_details.html:13
 msgid "Freelancer Details"
 msgstr "Detalles del Freelancer"
@@ -49,6 +50,7 @@ msgid "Close"
 msgstr "Cerrar"
 
 #: .\accounts\templates\login.html:14 .\accounts\templates\login.html:31
+#: .\hirehive_project\templates\base.html:114
 msgid "Login"
 msgstr "Ingresar"
 
@@ -61,6 +63,7 @@ msgid "Password"
 msgstr "Contraseña"
 
 #: .\accounts\templates\signup.html:13 .\accounts\templates\signup.html:59
+#: .\hirehive_project\templates\base.html:115
 msgid "SignUp"
 msgstr "Registrarse"
 
@@ -91,3 +94,186 @@ msgstr "Apellido"
 #: .\accounts\views.py:56
 msgid "Invalid username or password"
 msgstr "Nombre de usuario o contraseña no validos"
+
+#: .\hirehive_project\templates\base.html:55
+#: .\hirehive_project\templates\base.html:84
+msgid "Orders"
+msgstr "Ordenes"
+
+#: .\hirehive_project\templates\base.html:56
+msgid "My Services"
+msgstr "Mis servicios"
+
+#: .\hirehive_project\templates\base.html:86
+msgid "Logout"
+msgstr "Salir"
+
+#: .\payments\templates\orders_client.html:11
+msgid "My Orders"
+msgstr "Mis ordenes"
+
+#: .\payments\templates\orders_client.html:31
+msgid "Pay service"
+msgstr "Pagar servicio"
+
+#: .\payments\templates\orders_client.html:40
+#: .\payments\templates\orders_freelancer.html:62
+#: .\payments\templates\orders_freelancer.html:89
+msgid "You don't have any orders yet"
+msgstr "Todavia no tienes ordenes"
+
+#: .\payments\templates\orders_freelancer.html:12 .\payments\views.py:11
+msgid "Pending Approval"
+msgstr "Aprobación pendiente"
+
+#: .\payments\templates\orders_freelancer.html:29
+msgid "See Description"
+msgstr "Ver descripción"
+
+#: .\payments\templates\orders_freelancer.html:40
+msgid "Description"
+msgstr "Descripción"
+
+#: .\payments\templates\orders_freelancer.html:44
+msgid "Do you want to accept this job?"
+msgstr "Desea aceptar este trabajo?"
+
+#: .\payments\templates\orders_freelancer.html:50
+msgid "Accept"
+msgstr "Aceptar"
+
+#: .\payments\templates\orders_freelancer.html:52
+msgid "Decline"
+msgstr "Rechazar"
+
+#: .\payments\templates\orders_freelancer.html:67
+msgid "Waiting for Payment"
+msgstr "Esperando el pago"
+
+#: .\payments\templates\service_orders.html:11
+msgid "My Service Orders"
+msgstr "Mis ordenes de servicios"
+
+#: .\payments\templates\service_orders.html:33
+msgid "You don't have any order yet"
+msgstr "Todavia no tienes ordenes"
+
+#: .\payments\views.py:9
+msgid "Completed"
+msgstr "Completado"
+
+#: .\payments\views.py:10
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#: .\payments\views.py:12
+msgid "Pending Payment"
+msgstr "Pago pendiente"
+
+#: .\payments\views.py:13
+msgid "In Progress"
+msgstr "En progreso"
+
+#: .\services\templates\pages\home.html:12
+msgid "Find Top Talent or Your Next Gig"
+msgstr "Encuentra el mejor talento o tu proximo trabajo"
+
+#: .\services\templates\pages\home.html:15
+msgid "Search for services"
+msgstr "Pagar servicio"
+
+#: .\services\templates\pages\home.html:29
+msgid "Featured"
+msgstr "Destacados"
+
+#: .\services\templates\pages\home.html:31
+msgid "Filters"
+msgstr "Filtros"
+
+#: .\services\templates\pages\home.html:34
+msgid "Select Filter"
+msgstr "Seleccionar Filtro"
+
+#: .\services\templates\pages\home.html:40
+msgid "Under $100"
+msgstr "Menos de $100"
+
+#: .\services\templates\pages\home.html:45
+msgid "Mid-range ($100 - $400)"
+msgstr "Rango medio ($100 - $400)"
+
+#: .\services\templates\pages\home.html:50
+msgid "High-end ($400+)"
+msgstr "Gama alta ($400+)"
+
+#: .\services\templates\pages\home.html:54
+msgid "Select Category"
+msgstr "Seleccionar Categoria"
+
+#: .\services\templates\pages\home.html:56
+msgid "All Categories"
+msgstr "Todas las Categorias"
+
+#: .\services\templates\pages\home.html:65
+msgid "Clear"
+msgstr "Limpiar"
+
+#: .\services\templates\pages\home.html:66
+msgid "Apply"
+msgstr "Aplicar"
+
+#: .\services\templates\pages\home.html:107
+msgid "Price: $"
+msgstr "Precio: $"
+
+#: .\services\templates\services\all_reviews.html:17
+msgid "Back"
+msgstr "Volver"
+
+#: .\services\templates\services\all_reviews.html:19
+msgid "Recent Reviews"
+msgstr "Reseñas recientes"
+
+#: .\services\templates\services\all_reviews.html:33
+msgid "Published in: "
+msgstr "Publicado el: "
+
+#: .\services\templates\services\all_reviews.html:37
+msgid "No reviews yet"
+msgstr "No hay reseñas todavia"
+
+#: .\services\templates\services\confirm_delete.html:12
+msgid ""
+"\n"
+"            <h2>Are you sure you want to delete this service?</h2>\n"
+"            <p>This action cannot be undone</p>\n"
+"        "
+msgstr ""
+"\n"
+"            <h2>¿Está seguro de que desea eliminar este servicio?</h2>\n"
+"            <p>Esta acción no se puede deshacer</p>\n"
+"        "
+
+#: .\services\templates\services\confirm_delete.html:19
+msgid "Delete"
+msgstr "Eliminar"
+
+#: .\services\templates\services\confirm_delete.html:21
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: .\services\templates\services\success.html:13
+msgid ""
+"\n"
+"          <h3>Service created successfully</h3>\n"
+"          <p>Your service has been successfully added.</p>\n"
+"        "
+msgstr ""
+"\n"
+"          <h3>Servicio creado con éxito</h3>\n"
+"          <p>Su servicio ha sido añadido con éxito.</p>\n"
+"        "
+
+#: .\services\templates\services\success.html:17
+msgid "My services"
+msgstr "Mis servicios"

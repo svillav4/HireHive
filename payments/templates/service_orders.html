@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/service_orders.css' %}">
@@ -7,7 +8,7 @@
 
 {% block content %}
 
-    <h2 id="job_application_title">My Service Orders</h2>
+    <h2 id="job_application_title">{% translate "My Service Orders" %}</h2>
     <div class="container_orders">
         {% if orders %}
             {% for order in orders %}
@@ -24,12 +25,12 @@
                         </div>
                     </div>
                     <div class="right_job_application">
-                        <p class="{{order.status_color}} status_job_application" >{{order.status}}</p>
+                        <p class="{{order.status_color}} status_job_application" >{% translate order.status %}</p>
                     </div>
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no_job_applications">You don't have any order yet</p>
+            <p class="no_job_applications">{% translate "You don't have any order yet" %}</p>
         {% endif %}
     </div>
 

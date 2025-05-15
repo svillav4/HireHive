@@ -7,6 +7,7 @@ from payments.models import Order
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 
 class HomePageView(View):
     template_name = 'pages/home.html'

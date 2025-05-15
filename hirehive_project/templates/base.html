@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,8 +52,8 @@
                                 </svg>
                             </button>
                         </form>
-                            <li><a href="{% url 'orders_freelancer' %}">Orders</a></li>
-                            <li><a href="{% url 'my_services' %}">My Services</a></li>
+                            <li><a href="{% url 'orders_freelancer' %}">{% translate "Orders" %}</a></li>
+                            <li><a href="{% url 'my_services' %}">{% translate "My Services" %}</a></li>
                         {% else %}
                             <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                             <input name="next" type="hidden" value="{{ redirect_to }}">
@@ -80,9 +81,9 @@
                                 </svg>
                             </button>
                         </form>
-                            <li><a href="{% url 'orders_client' %}">Orders</a></li>
+                            <li><a href="{% url 'orders_client' %}">{% translate "Orders" %}</a></li>
                         {% endif %}               
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="{% url 'logout' %}">{% translate "Logout" %}</a></li>
                     {% else %}
                         <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                             <input name="next" type="hidden" value="{{ redirect_to }}">
@@ -110,8 +111,8 @@
                                 </svg>
                             </button>
                         </form>
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'signup' %}">SignUp</a></li>
+                        <li><a href="{% url 'login' %}">{% translate "Login" %}</a></li>
+                        <li><a href="{% url 'signup' %}">{% translate "SignUp" %}</a></li>
                     {% endif %}
                 </ul>
             </div>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/orders_client.css' %}">
@@ -7,7 +8,7 @@
 
 {% block content %}
 
-<h2 id="order_title">My Orders</h2>
+<h2 id="order_title">{% translate "My Orders" %}</h2>
 <div class="container_orders">
     {% if orders %}
     {% for order in orders %}
@@ -27,16 +28,16 @@
             {% if order.status == 'Pending Payment' %}
             <form action="{% url 'pay_order' order.id %}" method="POST">
                 {% csrf_token %}
-                <button name="action" value="pay" class="button_1">Pay service</button>
+                <button name="action" value="pay" class="button_1">{% translate "Pay service" %}</button>
             </form>
             {% else %}
-            <p class="{{order.status_color}} status_order">{{order.status}}</p>
+            <p class="{{order.status_color}} status_order">{% translate order.status %}</p>
             {% endif %}
         </div>
     </div>
     {% endfor %}
     {% else %}
-    <p class="no_orders">You don't have any orders yet</p>
+    <p class="no_orders">{% translate "You don't have any orders yet" %}</p>
     {% endif %}
 </div>
 
