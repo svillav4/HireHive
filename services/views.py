@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
+from hirehive_project import provider_factory
 
 class HomePageView(View):
     template_name = 'pages/home.html'
@@ -42,12 +43,22 @@ class HomePageView(View):
 
         categories = Category.objects.all()
 
+        # Get the weather provider
+        weather_provider_name = request.GET.get('select_weather')
+        if not weather_provider_name:
+            weather_provider_name = 'static'
+        weather_provider = provider_factory.get_weather_provider(weather_provider_name)
+        temp = weather_provider.get_weather()
+        
+
         context = {
             'services': services,
             'search': search,
             'categories': categories,
             'price_filter': price_filter,
             'category_filter': category_filter,
+            'weather_provider_name': weather_provider_name,
+            'temp': temp,
         }
         return render(request, self.template_name, context)
 
