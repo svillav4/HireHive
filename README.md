@@ -42,7 +42,47 @@ To keep a copy of our project, you can follow the next steps:
     ├───README.md
     └───requirements.txt
   ```
-6.  Run the development server.
+6. Internationalization (i18n) and Translations
+
+This project supports multiple languages using Django's built-in internationalization system. Translation files are located in the `locale/` directory and include `.po` files (editable text) and `.mo` files (compiled binary used by Django). Install GNU gettext tools. These are required to compile `.po` files into `.mo` files.
+
+- Linux (Ubuntu/Debian):
+  ```bash
+  sudo apt update && sudo apt install gettext
+  ```
+  
+- macOS (using Homebrew):
+  ```bash
+  brew install gettext
+  brew link gettext --force
+  ```
+  
+- Windows:
+  Download and install from https://mlocati.github.io/articles/gettext-iconv-windows.html
+  
+  Then add the bin/ folder to your system PATH.
+
+
+- Compile Translation Files
+  From your Django project root, run:
+  ```bash
+    python manage.py compilemessages
+  ```
+  
+- This will generate .mo files in the corresponding locale folders
+  ```bash
+    ├───locale
+        └── es/
+            └── LC_MESSAGES/
+                ├── django.po
+                └── django.mo  ← generated after compilemessages
+        └── en/
+            └── LC_MESSAGES/
+                ├── django.po
+                └── django.mo  ← generated after compilemessages
+  ```
+  
+7.  Run the development server.
   ```bash
     python manage.py runserver
   ```
