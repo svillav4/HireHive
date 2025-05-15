@@ -9,8 +9,8 @@ class WeatherStackProvider(WeatherInterface):
     def __init__(self):
         self.api_key = os.getenv("WEATHER_API_KEY")
 
-    def get_weather(self, city):
-        url = f"http://api.weatherstack.com/current?access_key={self.api_key}&query={city}"
+    def get_weather(self):
+        url = f"http://api.weatherstack.com/current?access_key={self.api_key}&query=Medellin"
         querystring = {"query":"Medellin"}
         response = requests.get(url, params=querystring)
         data = response.json()
