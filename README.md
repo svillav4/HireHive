@@ -46,6 +46,8 @@ To keep a copy of our project, you can follow the next steps:
 
 This project supports multiple languages using Django's built-in internationalization system. Translation files are located in the `locale/` directory and include `.po` files (editable text) and `.mo` files (compiled binary used by Django). Install GNU gettext tools. These are required to compile `.po` files into `.mo` files.
 
+See the complete documentation of Django translation [here](https://docs.djangoproject.com/en/5.1/topics/i18n/translation/#the-set-language-redirect-view)
+
 - Linux (Ubuntu/Debian):
   ```bash
   sudo apt update && sudo apt install gettext
@@ -71,15 +73,15 @@ This project supports multiple languages using Django's built-in internationaliz
   
 - This will generate .mo files in the corresponding locale folders
   ```bash
-    ├───locale
-        └── es/
-            └── LC_MESSAGES/
-                ├── django.po
-                └── django.mo  ← generated after compilemessages
-        └── en/
-            └── LC_MESSAGES/
-                ├── django.po
-                └── django.mo  ← generated after compilemessages
+  ├───locale
+      └── es/
+          └── LC_MESSAGES/
+              ├── django.po
+              └── django.mo  ← generated after compilemessages
+      └── en/
+          └── LC_MESSAGES/
+              ├── django.po
+              └── django.mo  ← generated after compilemessages
   ```
   
 7.  Run the development server.
