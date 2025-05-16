@@ -52,6 +52,7 @@
                                 </svg>
                             </button>
                         </form>
+                            <li><a href="{% url 'external_products' %}">Buy4u</a></li>
                             <li><a href="{% url 'orders_freelancer' %}">{% translate "Orders" %}</a></li>
                             <li><a href="{% url 'my_services' %}">{% translate "My Services" %}</a></li>
                         {% else %}
@@ -81,6 +82,7 @@
                                 </svg>
                             </button>
                         </form>
+                            <li><a href="{% url 'external_products' %}">Buy4u</a></li>
                             <li><a href="{% url 'orders_client' %}">{% translate "Orders" %}</a></li>
                         {% endif %}               
                         <li><a href="{% url 'logout' %}">{% translate "Logout" %}</a></li>
