@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render
 
 def external_products_view(request):
-    api_url = 'http://52.55.166.15:8000/api/products/'
+    api_url = 'http://buy4u.3utilities.com:8000/api/products/'
 
     try:
         response = requests.get(api_url, timeout=5)
