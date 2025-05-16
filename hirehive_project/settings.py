@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig", #This line is added to the settings.py file to include the accounts app in the project.
     "services.apps.ServicesConfig", #This line is added to the settings.py file to include the services app in the project.
     "payments.apps.PaymentsConfig", #This line is added to the settings.py file to include the payments app in the project.
+    'rest_framework',
+    'hirehive_api',
 ]
 
 MIDDLEWARE = [
