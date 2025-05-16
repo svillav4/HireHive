@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "payments.apps.PaymentsConfig", #This line is added to the settings.py file to include the payments app in the project.
     'rest_framework',
     'hirehive_api',
+    'api_externa',
 ]
 
 MIDDLEWARE = [
