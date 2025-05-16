@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/external_products.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<h1 class="main-title">{% translate "Productos disponibles" %}</h1>
+
+{% if products %}
+    <ul class="product-list">
+        {% for product in products %}
+            <li class="product-card">
+                <h2 class="product-title">{{ product.name }} - ${{ product.price }}</h2>
+                <p><strong>{% translate "Brand: " %}</strong> {{ product.brand }}</p>
+                <p><strong>{% translate "Warranty: " %}</strong> {{ product.warranty }}</p>
+                <p><strong>{% translate "Description: " %}</strong> {{ product.description }}</p>
+                <p><strong>{% translate "Quantity: " %}</strong> {{ product.quantity }}</p>
+                <img class="product-image" src="{{ product.image }}" alt="{{ product.name }}">
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="no-products">{% translate "There are no products available or there was an error connecting to the API." %}</p>
+{% endif %}
+{% endblock %}

@@ -32,6 +32,7 @@ urlpatterns = [
     path("services/", include("services.urls")),
     path("payment/", include("payments.urls")),
     path('api/', include('hirehive_api.urls')),
+    path('api_externa/', include('api_externa.urls')),
     )
 
 if settings.DEBUG:
