@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-15 12:16-0500\n"
+"POT-Creation-Date: 2025-05-15 20:52-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,6 +94,34 @@ msgstr "Apellido"
 #: .\accounts\views.py:56
 msgid "Invalid username or password"
 msgstr "Nombre de usuario o contraseña no validos"
+
+#: .\api_externa\templates\external_products.html:10
+msgid "Productos disponibles"
+msgstr "Productos disponibles"
+
+#: .\api_externa\templates\external_products.html:17
+msgid "Brand: "
+msgstr "Marca: "
+
+#: .\api_externa\templates\external_products.html:18
+msgid "Warranty: "
+msgstr "Garantía: "
+
+#: .\api_externa\templates\external_products.html:19
+#, fuzzy
+#| msgid "Description"
+msgid "Description: "
+msgstr "Descripción: "
+
+#: .\api_externa\templates\external_products.html:20
+msgid "Quantity: "
+msgstr "Cantidad: "
+
+#: .\api_externa\templates\external_products.html:26
+msgid ""
+"There are no products available or there was an error connecting to the API."
+msgstr ""
+"No hay productos disponibles o se ha producido un error al conectar con la API."
 
 #: .\hirehive_project\templates\base.html:55
 #: .\hirehive_project\templates\base.html:84
